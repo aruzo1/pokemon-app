@@ -4,6 +4,17 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "1rem",
+      screens: {
+        sm: "1280px",
+        md: "1280px",
+        lg: "1280px",
+        xl: "1280px",
+        "2xl": "1280px",
+      },
+    },
     extend: {
       colors: {
         grass: "#3E9709",

@@ -1,6 +1,6 @@
 import type { GetStaticProps, NextPage } from "next";
 import { gql } from "@apollo/client";
-import client from "../utils/apolloClient";
+import client from "../helpers/apolloClient";
 import Pokemon from "../components/Pokemon";
 import { IPokemon } from "../types";
 
@@ -10,11 +10,11 @@ interface Props {
 
 const Home: NextPage<Props> = ({ pokemons }) => {
   return (
-    <>
+    <div className="container grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-8">
       {pokemons.map((pokemon) => (
         <Pokemon key={pokemon.id} pokemon={pokemon} />
       ))}
-    </>
+    </div>
   );
 };
 
