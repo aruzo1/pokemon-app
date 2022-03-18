@@ -20,16 +20,17 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
 
   return (
     <div className="flex flex-col p-8 rounded-lg bg-gray-800">
-      <div className="p-4 mb-4 rounded-lg bg-gray-700 relative">
+      <div className="aspect-square mb-4 rounded-lg bg-gray-700 relative">
         <Image
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
           alt={pokemon.name}
-          width={1024}
-          height={1024}
+          layout="fill"
         />
       </div>
       <div>
-        <h3 className="text-lg text-gray-400">#{withPadding(pokemon.id)}</h3>
+        <h3 className="mb-2 text-lg text-gray-400">
+          #{withPadding(pokemon.id)}
+        </h3>
         <h2 className="mb-4 font-bold text-2xl">{pokemon.name}</h2>
         <div className="grid grid-flow-col gap-x-4 text-center text-gray-900">
           {typesList}
