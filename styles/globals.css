@@ -8,6 +8,6 @@
   body {
     background: theme("colors.gray.900");
     color: theme("colors.white");
-    font-family: Montserrat, sans-serif;
+    font-family: Montserrat, sans;
   }
 }

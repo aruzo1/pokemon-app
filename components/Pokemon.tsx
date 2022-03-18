@@ -11,7 +11,7 @@ const Pokemon = (props: { pokemon: IPokemon }) => {
       style={{
         background: tailwindConfig.theme.extend.colors[type.type.name],
       }}
-      className="rounded-lg px-4 py-1"
+      className="rounded-lg py-1"
     >
       {type.type.name}
     </div>
