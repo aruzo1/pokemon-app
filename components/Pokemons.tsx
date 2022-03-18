@@ -4,10 +4,9 @@ import { GET_POKEMONS, GetPokemonsQuery } from "../graphql/queries";
 import Pokemon from "../components/Pokemon";
 
 const Pokemons = () => {
-  const { data, fetchMore } = useQuery<GetPokemonsQuery>(
-    GET_POKEMONS,
-    { variables: { offset: 0 } }
-  );
+  const { data, fetchMore } = useQuery<GetPokemonsQuery>(GET_POKEMONS, {
+    variables: { offset: 0 },
+  });
 
   const fetchMoreIfBottom = () => {
     if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
