@@ -30,7 +30,7 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
       <div>
         <h3 className="text-lg text-gray-400">#{withPadding(pokemon.id)}</h3>
         <h2 className="mb-4 font-bold text-2xl">{pokemon.name}</h2>
-        <div className="grid grid-flow-col gap-x-4 text-center">
+        <div className="grid grid-flow-col gap-x-4 text-center text-gray-900">
           {typesList}
         </div>
       </div>
