@@ -1,8 +1,8 @@
-import { IPokemon } from "../types";
+import { PokemonType } from "../graphql/queries";
 import tailwindConfig from "../tailwind.config.js";
 import convertToTag from "../helpers/convertToTag";
 
-const Pokemon = (props: { pokemon: IPokemon }) => {
+const Pokemon = (props: { pokemon: PokemonType }) => {
   const { pokemon } = props;
 
   const typesList = pokemon.types.map((type, i) => (

@@ -1,24 +1,11 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { GET_POKEMONS, PokemonsType } from "../graphql/queries";
 import Pokemon from "../components/Pokemon";
-import { IPokemon } from "../types";
-
-const GET_POKEMONS = gql`
-  {
-    pokemons: pokemon_v2_pokemon(limit: 100) {
-      id
-      name
-      types: pokemon_v2_pokemontypes {
-        type: pokemon_v2_type {
-          name
-        }
-      }
-    }
-  }
-`;
 
 const Pokemons = () => {
-  const { loading, error, data } =
-    useQuery<{ pokemons: IPokemon[] }>(GET_POKEMONS);
+  const { loading, error, data } = useQuery<PokemonsType>(GET_POKEMONS, {
+    variables: { offset: 0 },
+  });
 
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Error</h1>;

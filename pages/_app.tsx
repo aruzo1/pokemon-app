@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import { ApolloProvider } from "@apollo/client";
-import client from "../helpers/apolloClient";
+import client from "../graphql/client";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
