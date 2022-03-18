@@ -22,8 +22,8 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
     <div className="flex flex-col p-8 rounded-lg bg-gray-800">
       <Image
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
-        width={512}
-        height={512}
+        width={1024}
+        height={1024}
         className="p-4 mb-4 rounded-lg bg-gray-700"
       />
       <div>
