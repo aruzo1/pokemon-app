@@ -5,15 +5,15 @@ import withPadding from "../helpers/withPadding";
 const Pokemon = (props: { pokemon: PokemonType }) => {
   const { pokemon } = props;
 
-  const typesList = pokemon.types.map((type, i) => (
+  const typesList = pokemon.types.map(({ type }, i) => (
     <div
       key={i}
       style={{
-        background: tailwindConfig.theme.extend.colors[type.type.name],
+        background: tailwindConfig.theme.extend.colors[type.name],
       }}
       className="rounded-lg py-2"
     >
-      {type.type.name}
+      {type.name}
     </div>
   ));
 
