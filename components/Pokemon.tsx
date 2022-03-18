@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PokemonType } from "../graphql/queries";
 import tailwindConfig from "../tailwind.config.js";
 import withPadding from "../helpers/withPadding";
@@ -19,8 +20,10 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
 
   return (
     <div className="flex flex-col p-8 rounded-lg bg-gray-800">
-      <img
+      <Image
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+        width={512}
+        height={512}
         className="p-4 mb-4 rounded-lg bg-gray-700"
       />
       <div>
