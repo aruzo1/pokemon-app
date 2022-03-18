@@ -23,7 +23,7 @@ module.exports = {
         normal: "#A8A878",
         flying: "#A890F0",
         bug: "#A8B820",
-        poison: "#A040A0",
+        poison: "#D665D6",
         electric: "#F8D030",
         ground: "#E0C068",
         fighting: "#C03028",
