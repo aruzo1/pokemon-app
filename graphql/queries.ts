@@ -20,6 +20,6 @@ export type PokemonType = {
   types: { type: { name: string } }[];
 };
 
-export type PokemonsType = {
+export type GetPokemonsQuery = {
   pokemons: PokemonType[];
 };
