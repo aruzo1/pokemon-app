@@ -1,6 +1,6 @@
 import { PokemonType } from "../graphql/queries";
 import tailwindConfig from "../tailwind.config.js";
-import convertToTag from "../helpers/convertToTag";
+import withPadding from "../helpers/withPadding";
 
 const Pokemon = (props: { pokemon: PokemonType }) => {
   const { pokemon } = props;
@@ -11,7 +11,7 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
       style={{
         background: tailwindConfig.theme.extend.colors[type.type.name],
       }}
-      className="rounded-lg py-1"
+      className="rounded-lg py-2"
     >
       {type.type.name}
     </div>
@@ -24,7 +24,7 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
         className="p-4 mb-4 rounded-lg bg-gray-700"
       />
       <div>
-        <h3 className="text-lg text-gray-400">{convertToTag(pokemon.id)}</h3>
+        <h3 className="text-lg text-gray-400">#{withPadding(pokemon.id)}</h3>
         <h2 className="mb-4 font-bold text-2xl">{pokemon.name}</h2>
         <div className="grid grid-flow-col gap-x-4 text-center">
           {typesList}
