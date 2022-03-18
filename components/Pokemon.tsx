@@ -23,6 +23,7 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
       <div className="p-4 mb-4 rounded-lg bg-gray-700 relative">
         <Image
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+          alt={pokemon.name}
           width={1024}
           height={1024}
         />
