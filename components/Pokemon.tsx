@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { PokemonType } from "../graphql/queries";
 import tailwindConfig from "../tailwind.config.js";
+import ImageWithFallback from "./ImageWithFallback";
 import withPadding from "../helpers/withPadding";
 
 const Pokemon = (props: { pokemon: PokemonType }) => {
@@ -20,18 +20,20 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
 
   return (
     <li className="flex flex-col p-8 rounded-lg bg-gray-800">
-      <div className="aspect-square mb-4 rounded-lg bg-gray-700 relative">
-        <Image
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
-          alt={pokemon.name}
-          layout="fill"
-        />
+      <div className="p-4 mb-4 rounded-lg bg-gray-700">
+        <div className="aspect-square relative">
+          <ImageWithFallback
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+            fallbackSrc={"/images/unknownPokemon.png"}
+            rest={{ alt: pokemon.name, layout: "fill" }}
+          />
+        </div>
       </div>
       <div>
         <h3 className="mb-2 text-lg text-gray-400">
-          #{withPadding(pokemon.id)}
+          #{withPadding(pokemon.speciesId)}
         </h3>
-        <h2 className="mb-4 font-bold text-2xl">{pokemon.name}</h2>
+        <h2 className="mb-4 truncate font-bold text-2xl">{pokemon.name}</h2>
         <div className="grid grid-flow-col gap-x-4 text-center text-gray-900">
           {typesList}
         </div>
