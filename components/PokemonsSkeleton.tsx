@@ -1,7 +1,7 @@
 const PokemonsSkeleton = () => {
   return (
     <>
-      {Array.from({ length: 12 }, (_, i) => (
+      {Array.from({ length: 24 }, (_, i) => (
         <div key={i} className="flex flex-col p-8 rounded-lg bg-gray-800">
           <div className="aspect-square mb-4 rounded-lg bg-gray-700 animate-pulse"></div>
           <div>
