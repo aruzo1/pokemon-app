@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_POKEMONS, GetPokemonsQuery } from "../graphql/queries";
 import Pokemon from "../components/Pokemon";
-import PokemonsSkeleton from "./PokemonsSkeleton";
+import Pokeball from "../public/icons/pokeball.svg";
 
 const Pokemons = () => {
   const { data, loading, error, fetchMore } = useQuery<GetPokemonsQuery>(
@@ -14,7 +14,10 @@ const Pokemons = () => {
   );
 
   const fetchMoreIfBottom = () => {
-    if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+    if (
+      window.scrollY + window.innerHeight >=
+      document.body.scrollHeight - 200
+    ) {
       fetchMore({ variables: { offset: data?.pokemons.length || 0 } });
     }
   };
@@ -31,8 +34,8 @@ const Pokemons = () => {
         {data?.pokemons.map((pokemon) => (
           <Pokemon key={pokemon.id} pokemon={pokemon} />
         ))}
-        {loading && <PokemonsSkeleton />}
       </div>
+      {loading && <Pokeball className="mx-auto animate-spin" />}
       {error && (
         <div className="text-center">
           <h1 className="font-bold text-red-400 text-5xl">Error!</h1>
