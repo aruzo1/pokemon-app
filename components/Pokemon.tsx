@@ -1,5 +1,6 @@
-import { PokemonType } from "../graphql/queries";
+import Link from "next/link";
 import tailwindConfig from "../tailwind.config.js";
+import { PokemonType } from "../graphql/queries";
 import ImageWithFallback from "./ImageWithFallback";
 import withPadding from "../helpers/withPadding";
 
@@ -19,26 +20,28 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
   ));
 
   return (
-    <li className="flex flex-col p-4 rounded-lg bg-gray-800">
-      <div className="p-4 mb-4 rounded-lg bg-gray-700">
-        <div className="aspect-square relative">
-          <ImageWithFallback
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
-            fallbackSrc={"/images/unknownPokemon.png"}
-            rest={{ alt: pokemon.name, layout: "fill" }}
-          />
+    <Link href={`pokemons/${pokemon.name}`}>
+      <li className="flex flex-col p-4 rounded-lg cursor-pointer bg-gray-800 hover:scale-95 transition">
+        <div className="p-4 mb-4 rounded-lg bg-gray-700">
+          <div className="aspect-square relative">
+            <ImageWithFallback
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+              fallbackSrc={"/images/unknownPokemon.png"}
+              rest={{ alt: pokemon.name, layout: "fill" }}
+            />
+          </div>
         </div>
-      </div>
-      <div>
-        <h3 className="mb-2 text-lg text-gray-400">
-          #{withPadding(pokemon.speciesId)}
-        </h3>
-        <h2 className="mb-4 truncate font-bold text-2xl">{pokemon.name}</h2>
-        <div className="grid grid-flow-col gap-x-4 text-center text-gray-900">
-          {typesList}
+        <div>
+          <h3 className="mb-2 text-lg text-gray-400">
+            #{withPadding(pokemon.speciesId)}
+          </h3>
+          <h2 className="mb-4 truncate font-bold text-2xl">{pokemon.name}</h2>
+          <div className="grid grid-flow-col gap-x-4 text-center text-gray-900">
+            {typesList}
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </Link>
   );
 };
 
