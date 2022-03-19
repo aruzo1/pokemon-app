@@ -30,11 +30,11 @@ const Pokemons = () => {
 
   return (
     <section className="container my-8">
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-8">
+      <ul className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-8">
         {data?.pokemons.map((pokemon) => (
           <Pokemon key={pokemon.id} pokemon={pokemon} />
         ))}
-      </div>
+      </ul>
       {loading && <Pokeball className="mx-auto animate-spin" />}
       {error && (
         <div className="text-center">

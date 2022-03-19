@@ -19,7 +19,7 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
   ));
 
   return (
-    <div className="flex flex-col p-8 rounded-lg bg-gray-800">
+    <li className="flex flex-col p-8 rounded-lg bg-gray-800">
       <div className="aspect-square mb-4 rounded-lg bg-gray-700 relative">
         <Image
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
@@ -36,7 +36,7 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
           {typesList}
         </div>
       </div>
-    </div>
+    </li>
   );
 };
 
