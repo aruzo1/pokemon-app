@@ -19,7 +19,7 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
   ));
 
   return (
-    <li className="flex flex-col p-8 rounded-lg bg-gray-800">
+    <li className="flex flex-col p-4 rounded-lg bg-gray-800">
       <div className="p-4 mb-4 rounded-lg bg-gray-700">
         <div className="aspect-square relative">
           <ImageWithFallback
