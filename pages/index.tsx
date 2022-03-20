@@ -11,10 +11,10 @@ const Home: NextPage = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content={"https://pokedex-liard-one.vercel.app" + thumbnail.src}
+          content="https://pokedex-liard-one.vercel.app/thumbnail.png"
         />
-        <meta property="og:image:width" content={`${thumbnail.width}`} />
-        <meta property="og:image:height" content={`${thumbnail.height}`} />
+        <meta property="og:image:width" content="1920" />
+        <meta property="og:image:height" content="1080" />
       </Head>
       <Pokemons />
     </main>
