@@ -8,7 +8,7 @@ const Home: NextPage = () => {
     <main>
       <Head>
         <title>Pokedex | Home</title>
-        <meta property="og:image" content={thumbnail.src} />
+        <meta property="og:image" content="/thumbnail.jpg" />
         <meta property="og:image:width" content={`${thumbnail.width}`} />
         <meta property="og:image:height" content={`${thumbnail.height}`} />
       </Head>
