@@ -11,8 +11,8 @@ const Document = () => {
         />
         <meta name="author" content="Aruzo" />
         <meta
-          name="og:image"
-          content="https://tueuropa.pl/uploads/articles_files/2021/11/05/6e7f9516-1948-d9e8-ca22-00007380aca5.jpg"
+          property="og:image"
+          content="https://m.media-amazon.com/images/M/MV5BZDJjOTE0N2EtMmRlZS00NzU0LWE0ZWQtM2Q3MWMxNjcwZjBhXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_FMjpg_UX1000_.jpg"
         />
       </Head>
       <body>
