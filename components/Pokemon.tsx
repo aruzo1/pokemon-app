@@ -4,15 +4,11 @@ import { PokemonType } from "../graphql/queries";
 import ImageWithFallback from "./ImageWithFallback";
 import withPadding from "../helpers/withPadding";
 
-const Pokemon = (props: { pokemon: PokemonType }) => {
-  const { pokemon } = props;
-
+const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
   const typesList = pokemon.types.map(({ type }, i) => (
     <div
       key={i}
-      style={{
-        background: tailwindConfig.theme.extend.colors[type.name],
-      }}
+      style={{ background: tailwindConfig.theme.extend.colors[type.name] }}
       className="rounded-lg py-2"
     >
       {type.name}
@@ -31,7 +27,7 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
             />
           </div>
         </figure>
-        <div>
+
           <h3 className="mb-2 text-lg text-gray-400">
             #{withPadding(pokemon.speciesId)}
           </h3>
@@ -39,7 +35,7 @@ const Pokemon = (props: { pokemon: PokemonType }) => {
           <div className="grid grid-flow-col gap-x-4 text-center text-gray-900">
             {typesList}
           </div>
-        </div>
+    
       </li>
     </Link>
   );
