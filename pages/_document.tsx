@@ -12,8 +12,10 @@ const Document = () => {
         <meta name="author" content="Aruzo" />
         <meta
           property="og:image"
-          content="https://m.media-amazon.com/images/M/MV5BZDJjOTE0N2EtMmRlZS00NzU0LWE0ZWQtM2Q3MWMxNjcwZjBhXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_FMjpg_UX1000_.jpg"
+          content="/thumbnail.png"
         />
+        <meta property="og:image:height" content="1920" />
+        <meta property="og:image:width" content="1080" />
       </Head>
       <body>
         <Main />
