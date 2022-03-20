@@ -1,0 +1,16 @@
+{
+  "short_name": "Pokedex",
+  "name": "Pokedex",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "background_color": "#111827",
+  "theme_color": "#dc2626",
+  "description": "The Pokédex has a wealth of information on all the Pokémon creatures from the entire game series."
+}
