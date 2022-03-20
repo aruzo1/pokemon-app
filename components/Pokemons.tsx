@@ -5,7 +5,7 @@ import ArrowDown from "../public/icons/arrowDown.svg";
 import Pokeball from "../public/icons/pokeball.svg";
 import Pokemon from "./Pokemon";
 
-const orderOptions = [
+export const orderOptions = [
   { name: "Lowest index", value: { pokemon_species_id: "asc" } },
   { name: "Highest index", value: { pokemon_species_id: "desc" } },
   { name: "A - Z", value: { name: "asc" } },
