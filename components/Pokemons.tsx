@@ -1,26 +1,10 @@
-import { useEffect } from "react";
-import { useInfiniteQuery } from "react-query";
-import client from "../graphql/client";
-import { GET_POKEMONS, PokemonType } from "../graphql/queries";
+import { useEffect, useState } from "react";
+import { usePokemons } from "../graphql/queries";
 import Pokemon from "./Pokemon";
 import Pokeball from "../public/icons/pokeball.svg";
 
-const fetchPokemons = async ({ pageParam = 0 }: { pageParam?: number }) => {
-  return client
-    .request(GET_POKEMONS, { offset: pageParam })
-    .then((res) => res.pokemons);
-};
-
 const Pokemons = () => {
-  const { data, error, isFetching, fetchNextPage } = useInfiniteQuery<
-    PokemonType[]
-  >("pokemons", fetchPokemons, {
-    getNextPageParam(_, pages) {
-      // Convert 2D array to 1D and return length
-      const offset: PokemonType[] = [];
-      return offset.concat(...pages).length;
-    },
-  });
+  const { data, error, isFetching, fetchNextPage } = usePokemons();
 
   const fetchMoreIfBottom = () => {
     if (
@@ -39,15 +23,15 @@ const Pokemons = () => {
   }, [error, isFetching]);
 
   return (
-    <section className="container my-8">
-      <ul className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-8">
+    <section className="container">
+      <ul className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {data?.pages.map((page) =>
           page.map((pokemon) => <Pokemon key={pokemon.id} pokemon={pokemon} />)
         )}
       </ul>
-      {isFetching && <Pokeball className="mx-auto animate-spin" />}
+      {isFetching && <Pokeball className="mx-auto my-8 animate-spin" />}
       {error && (
-        <div className="text-center">
+        <div className="text-center my-8">
           <h1 className="font-bold text-red-400 text-5xl">Error!</h1>
           <p className="text-gray-400">Try again later.</p>
         </div>
