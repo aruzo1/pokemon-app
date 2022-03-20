@@ -5,8 +5,6 @@ import thumbnail from "../public/thumbnail.png";
 
 //@ts-ignore
 const Home: NextPage = ({ host }) => {
-  const thumbnailUrl = "https://" + host + thumbnail.src;
-
   return (
     <main>
       <Head>
@@ -20,10 +18,10 @@ const Home: NextPage = ({ host }) => {
           property="og:description"
           content="The Pokédex is an electronic device created and designed to catalog and provide information regarding the various species of Pokémon featured in the Pokémon video game, anime and manga series."
         />
-        <meta property="og:image" content={thumbnailUrl} />
+        <meta property="og:image" content={"https://" + host + thumbnail.src} />
         <meta property="og:image:width" content={`${thumbnail.width}`} />
         <meta property="og:image:height" content={`${thumbnail.height}`} />
-        <meta property="twitter:image" content={thumbnailUrl} />
+        <meta property="twitter:image" content={"https://" + host + thumbnail.src} />
       </Head>
       <Pokemons />
     </main>
