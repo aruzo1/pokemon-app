@@ -9,8 +9,6 @@ const Home: NextPage = () => {
         <title>Pokedex | Home</title>
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/thumbnail.jpg" />
-        <meta property="og:image:width" content="1920" />
-        <meta property="og:image:height" content="1080" />
       </Head>
       <Pokemons />
     </main>
