@@ -16,17 +16,17 @@ const Pokemons = () => {
   const [order, setOrder] = useState({});
   const { data, error, isFetching, fetchNextPage } = usePokemons(order);
 
-  const fetchMoreIfBottom = () => {
-    if (
-      !error &&
-      !isFetching &&
-      window.scrollY + window.innerHeight >= document.body.scrollHeight - 200
-    ) {
-      fetchNextPage();
-    }
-  };
-
   useEffect(() => {
+    const fetchMoreIfBottom = () => {
+      if (
+        !error &&
+        !isFetching &&
+        window.scrollY + window.innerHeight >= document.body.scrollHeight - 200
+      ) {
+        fetchNextPage();
+      }
+    };
+
     fetchMoreIfBottom();
     window.addEventListener("scroll", fetchMoreIfBottom);
     return () => window.removeEventListener("scroll", fetchMoreIfBottom);
