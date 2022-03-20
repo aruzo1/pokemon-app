@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { usePokemons } from "../graphql/queries";
 import Pokemon from "./Pokemon";
 import Pokeball from "../public/icons/pokeball.svg";
@@ -23,20 +23,24 @@ const Pokemons = () => {
   }, [error, isFetching]);
 
   return (
-    <section className="container">
-      <ul className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {data?.pages.map((page) =>
-          page.map((pokemon) => <Pokemon key={pokemon.id} pokemon={pokemon} />)
+    <div className="container">
+      <section>
+        <ul className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {data?.pages.map((page) =>
+            page.map((pokemon) => (
+              <Pokemon key={pokemon.id} pokemon={pokemon} />
+            ))
+          )}
+        </ul>
+        {isFetching && <Pokeball className="mx-auto my-8 animate-spin" />}
+        {error && (
+          <div className="text-center my-8">
+            <h1 className="font-bold text-red-400 text-5xl">Error!</h1>
+            <p className="text-gray-400">Try again later.</p>
+          </div>
         )}
-      </ul>
-      {isFetching && <Pokeball className="mx-auto my-8 animate-spin" />}
-      {error && (
-        <div className="text-center my-8">
-          <h1 className="font-bold text-red-400 text-5xl">Error!</h1>
-          <p className="text-gray-400">Try again later.</p>
-        </div>
-      )}
-    </section>
+      </section>
+    </div>
   );
 };
 
