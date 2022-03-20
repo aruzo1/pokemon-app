@@ -26,16 +26,16 @@ export type PokemonType = {
   types: { type: { name: string } }[];
 };
 
-const fetchPokemons = async (offset: number, queryKey: readonly any[]) => {
+const fetchPokemons = async (offset: number, order: {}) => {
   return client
-    .request(GET_POKEMONS, { offset, order: queryKey[1] })
+    .request(GET_POKEMONS, { offset, order })
     .then((res) => res.pokemons);
 };
 
 export const usePokemons = (order: {}) => {
   return useInfiniteQuery<PokemonType[]>(
     ["pokemons", order],
-    ({ pageParam = 0, queryKey }) => fetchPokemons(pageParam, queryKey),
+    ({ pageParam = 0 }) => fetchPokemons(pageParam, order),
     {
       getNextPageParam(_, pages) {
         // Convert 2D array to 1D and return length
