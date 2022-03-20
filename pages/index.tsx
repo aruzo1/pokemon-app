@@ -6,12 +6,12 @@ const Home: NextPage = () => {
   return (
     <main>
       <Head>
-        <title>Pokedex | Home</title>
+        <title>Pokedex - Home</title>
+        <meta name="og:title" content="Pokedex - Home" />
         <meta
           name="description"
           content="The Pokédex has a wealth of information on all the Pokémon creatures from the entire game series."
         />
-        <meta name="og:title" content="Pokedex | Home" />
         <meta
           name="og:description"
           content="The Pokédex has a wealth of information on all the Pokémon creatures from the entire game series."
