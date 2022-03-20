@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Menu } from "@headlessui/react";
 import { usePokemons } from "../graphql/queries";
 import Pokemon from "./Pokemon";
 import Pokeball from "../public/icons/pokeball.svg";
@@ -23,7 +24,14 @@ const Pokemons = () => {
   }, [error, isFetching]);
 
   return (
-    <div className="container">
+    <div className="container grid gap-8 py-8">
+      <div className="flex justify-end">
+        <Menu>
+          <Menu.Button className="py-2 px-3 rounded-lg bg-gray-800">
+            Sort by
+          </Menu.Button>
+        </Menu>
+      </div>
       <main>
         <ul className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {data?.pages.map((page) =>
