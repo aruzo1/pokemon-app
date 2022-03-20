@@ -1,10 +1,9 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Pokemons from "../components/Pokemons";
 import thumbnail from "../public/thumbnail.png";
 
-//@ts-ignore
-const Home: NextPage = ({ host }) => {
+const Home: NextPage<{ host: string }> = ({ host }) => {
   return (
     <main>
       <Head>
@@ -18,8 +17,8 @@ const Home: NextPage = ({ host }) => {
   );
 };
 
-Home.getInitialProps = ({ req }) => {
-  return { host: req?.headers.host };
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  return { props: { host: req.headers.host } };
 };
 
 export default Home;
