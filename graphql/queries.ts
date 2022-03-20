@@ -5,12 +5,8 @@ import { GraphQLClient } from "graphql-request";
 const client = new GraphQLClient("https://beta.pokeapi.co/graphql/v1beta");
 
 const GET_POKEMONS = gql`
-  query ($offset: Int!) {
-    pokemons: pokemon_v2_pokemon(
-      limit: 24
-      offset: $offset
-      order_by: { pokemon_species_id: asc }
-    ) {
+  query ($offset: Int!, $order: [pokemon_v2_pokemon_order_by!]) {
+    pokemons: pokemon_v2_pokemon(limit: 24, offset: $offset, order_by: $order) {
       id
       speciesId: pokemon_species_id
       name
@@ -30,14 +26,16 @@ export type PokemonType = {
   types: { type: { name: string } }[];
 };
 
-const fetchPokemons = async (offset: number) => {
-  return client.request(GET_POKEMONS, { offset }).then((res) => res.pokemons);
+const fetchPokemons = async (offset: number, queryKey: readonly any[]) => {
+  return client
+    .request(GET_POKEMONS, { offset, order: queryKey[1] })
+    .then((res) => res.pokemons);
 };
 
-export const usePokemons = () => {
+export const usePokemons = (order: {}) => {
   return useInfiniteQuery<PokemonType[]>(
-    "pokemons",
-    ({ pageParam = 0 }) => fetchPokemons(pageParam),
+    ["pokemons", order],
+    ({ pageParam = 0, queryKey }) => fetchPokemons(pageParam, queryKey),
     {
       getNextPageParam(_, pages) {
         // Convert 2D array to 1D and return length

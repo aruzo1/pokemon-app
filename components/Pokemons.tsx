@@ -1,11 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Menu } from "@headlessui/react";
 import { usePokemons } from "../graphql/queries";
-import Pokemon from "./Pokemon";
+import ArrowDown from "../public/icons/arrowDown.svg";
 import Pokeball from "../public/icons/pokeball.svg";
+import Pokemon from "./Pokemon";
+
+const orderOptions = [
+  { name: "Lowest index", order: { pokemon_species_id: "asc" } },
+  { name: "Highest index", order: { pokemon_species_id: "desc" } },
+  { name: "A-Z", order: { name: "asc" } },
+  { name: "Z-A", order: { name: "desc" } },
+];
 
 const Pokemons = () => {
-  const { data, error, isFetching, fetchNextPage } = usePokemons();
+  const [order, setOrder] = useState({});
+  const { data, error, isFetching, fetchNextPage } = usePokemons(order);
 
   const fetchMoreIfBottom = () => {
     if (
@@ -24,14 +33,24 @@ const Pokemons = () => {
   }, [error, isFetching]);
 
   return (
-    <div className="container grid gap-8 py-8">
-      <div className="flex justify-end">
-        <Menu>
-          <Menu.Button className="py-2 px-3 rounded-lg bg-gray-800">
-            Sort by
-          </Menu.Button>
-        </Menu>
-      </div>
+    <div className="container flex flex-col gap-8 py-8">
+      <Menu as="div" className="relative">
+        <Menu.Button className="flex items-center py-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
+          Sort by <ArrowDown className="ml-2" />
+        </Menu.Button>
+        <Menu.Items className="z-10 absolute top-full w-52 mt-4 p-2 rounded-lg bg-gray-800">
+          {orderOptions.map((orderOption, i) => (
+            <Menu.Item
+              key={i}
+              as="button"
+              className="w-full py-2 rounded-lg bg-gray-800 hover:bg-gray-700"
+              onClick={() => setOrder(orderOption.order)}
+            >
+              {orderOption.name}
+            </Menu.Item>
+          ))}
+        </Menu.Items>
+      </Menu>
       <main>
         <ul className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {data?.pages.map((page) =>
