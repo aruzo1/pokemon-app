@@ -27,15 +27,13 @@ const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
             />
           </div>
         </figure>
-
-          <h3 className="mb-2 text-lg text-gray-400">
-            #{withPadding(pokemon.speciesId)}
-          </h3>
-          <h2 className="mb-4 truncate font-bold text-2xl">{pokemon.name}</h2>
-          <div className="grid grid-flow-col gap-x-4 text-center text-gray-900">
-            {typesList}
-          </div>
-    
+        <h3 className="mb-2 text-lg text-gray-400">
+          #{withPadding(pokemon.speciesId)}
+        </h3>
+        <h2 className="mb-4 truncate font-bold text-2xl">{pokemon.name}</h2>
+        <div className="grid grid-flow-col gap-x-4 text-center text-gray-900">
+          {typesList}
+        </div>
       </li>
     </Link>
   );
