@@ -1,17 +1,5 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { offsetLimitPagination } from "@apollo/client/utilities";
+import { GraphQLClient } from "graphql-request";
 
-const client = new ApolloClient({
-  uri: "https://beta.pokeapi.co/graphql/v1beta",
-  cache: new InMemoryCache({
-    typePolicies: {
-      Query: {
-        fields: {
-          pokemon_v2_pokemon: offsetLimitPagination(),
-        },
-      },
-    },
-  }),
-});
+const client = new GraphQLClient("https://beta.pokeapi.co/graphql/v1beta");
 
 export default client;

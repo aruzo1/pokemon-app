@@ -1,13 +1,23 @@
 import type { AppProps } from "next/app";
-import { ApolloProvider } from "@apollo/client";
-import client from "../graphql/client";
+import { QueryClient, QueryClientProvider } from "react-query";
 import "../styles/globals.css";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      refetchInterval: false,
+    },
+  },
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={client}>
+    <QueryClientProvider client={queryClient}>
       <Component {...pageProps} />
-    </ApolloProvider>
+    </QueryClientProvider>
   );
 }
 

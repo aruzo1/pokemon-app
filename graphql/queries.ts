@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from "graphql-request";
 
 export const GET_POKEMONS = gql`
   query ($offset: Int!) {
@@ -24,8 +24,4 @@ export type PokemonType = {
   speciesId: number;
   name: string;
   types: { type: { name: string } }[];
-};
-
-export type GetPokemonsQuery = {
-  pokemons: PokemonType[];
 };
