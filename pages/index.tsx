@@ -8,17 +8,17 @@ const Home: NextPage = () => {
       <Head>
         <title>Pokedex | Home</title>
         <meta
-          property="description"
+          name="description"
           content="The Pokédex has a wealth of information on all the Pokémon creatures from the entire game series."
         />
-        <meta property="og:title" content="Pokedex | Home" />
+        <meta name="og:title" content="Pokedex | Home" />
         <meta
-          property="og:description"
+          name="og:description"
           content="The Pokédex has a wealth of information on all the Pokémon creatures from the entire game series."
         />
         <meta name="og:site_name" content="Pokedex" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="/thumbnail.jpg" />
+        <meta name="og:type" content="website" />
+        <meta name="og:image" content="/thumbnail.jpg" />
       </Head>
       <Pokemons />
     </main>
