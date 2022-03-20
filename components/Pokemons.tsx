@@ -13,7 +13,9 @@ const orderOptions = [
 ];
 
 const Pokemons = () => {
-  const [order, setOrder] = useState({});
+  const [order, setOrder] = useState<{ [key: string]: any }>({
+    pokemon_species_id: "asc",
+  });
   const { data, error, isFetching, fetchNextPage } = usePokemons(order);
 
   useEffect(() => {
