@@ -5,16 +5,25 @@ import thumbnail from "../public/thumbnail.png";
 
 //@ts-ignore
 const Home: NextPage = ({ host }) => {
+  const thumbnailUrl = "http://" + host + thumbnail.src;
+
   return (
     <main>
       <Head>
         <title>Pokedex | Home</title>
-        <meta property="og:image" content={"http://" + host + thumbnail.src} />
-        <meta property="og:image:width" content={thumbnail.width.toString()} />
         <meta
-          property="og:image:height"
-          content={thumbnail.height.toString()}
+          property="description"
+          content="The Pokédex is an electronic device created and designed to catalog and provide information regarding the various species of Pokémon featured in the Pokémon video game, anime and manga series."
         />
+        <meta property="og:title" content="Pokedex | Home" />
+        <meta
+          property="og:description"
+          content="The Pokédex is an electronic device created and designed to catalog and provide information regarding the various species of Pokémon featured in the Pokémon video game, anime and manga series."
+        />
+        <meta property="og:image" content={thumbnailUrl} />
+        <meta property="og:image:width" content={`${thumbnail.width}`} />
+        <meta property="og:image:height" content={`${thumbnail.height}`} />
+        <meta property="twitter:image" content={thumbnailUrl} />
       </Head>
       <Pokemons />
     </main>
