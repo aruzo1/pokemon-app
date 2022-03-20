@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Pokemons from "../components/Pokemons";
-import thumbnail from "../public/thumbnail.png";
 
 const Home: NextPage = () => {
   return (
