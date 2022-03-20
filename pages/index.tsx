@@ -16,6 +16,7 @@ const Home: NextPage = () => {
           property="og:description"
           content="The Pokédex has a wealth of information on all the Pokémon creatures from the entire game series."
         />
+        <meta name="og:site_name" content="Pokedex" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/thumbnail.jpg" />
       </Head>
