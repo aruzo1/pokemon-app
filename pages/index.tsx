@@ -8,6 +8,7 @@ const Home: NextPage<{ host: string }> = ({ host }) => {
     <main>
       <Head>
         <title>Pokedex | Home</title>
+        <meta property="og:type" content="website" />
         <meta property="og:image" content={"https://" + host + thumbnail.src} />
         <meta property="og:image:width" content={`${thumbnail.width}`} />
         <meta property="og:image:height" content={`${thumbnail.height}`} />
