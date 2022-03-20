@@ -21,6 +21,7 @@ const Home: NextPage = () => {
         <meta name="og:site_name" content="Pokedex" />
         <meta name="og:type" content="website" />
         <meta name="og:image" content="/thumbnail.jpg" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
       <Pokemons />
     </main>
