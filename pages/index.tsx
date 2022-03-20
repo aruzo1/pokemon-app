@@ -5,7 +5,7 @@ import thumbnail from "../public/thumbnail.png";
 
 //@ts-ignore
 const Home: NextPage = ({ host }) => {
-  const thumbnailUrl = "http://" + host + thumbnail.src;
+  const thumbnailUrl = "https://" + host + thumbnail.src;
 
   return (
     <main>
