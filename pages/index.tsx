@@ -1,6 +1,8 @@
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
+import { dehydrate, QueryClient } from "react-query";
 import Pokemons from "../components/Pokemons";
+import { fetchPokemons } from "../graphql/queries";
 
 const Home: NextPage = () => {
   return (
@@ -23,6 +25,21 @@ const Home: NextPage = () => {
       <Pokemons />
     </main>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchInfiniteQuery(
+    ["pokemons", { pokemon_species_id: "asc" }],
+    () => fetchPokemons(0, { pokemon_species_id: "asc" }),
+  );
+
+  return {
+    props: {
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+    },
+  };
 };
 
 export default Home;

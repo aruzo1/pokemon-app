@@ -26,7 +26,7 @@ export type PokemonType = {
   types: { type: { name: string } }[];
 };
 
-const fetchPokemons = async (offset: number, order: {}) => {
+export const fetchPokemons = async (offset: number, order: {}) => {
   return client
     .request(GET_POKEMONS, { offset, order })
     .then((res) => res.pokemons);
