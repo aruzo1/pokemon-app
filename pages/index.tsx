@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { dehydrate, QueryClient } from "react-query";
-import Pokemons, { orderOptions } from "../components/Pokemons";
+import Pokemons from "../components/Pokemons";
 import { fetchPokemons } from "../graphql/queries";
 
 const Home: NextPage = () => {
@@ -30,12 +30,10 @@ const Home: NextPage = () => {
 export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
 
-  for (const order in orderOptions) {
-    await queryClient.prefetchInfiniteQuery(
-      ["pokemons", orderOptions[order].value],
-      () => fetchPokemons(0, orderOptions[order].value)
-    );
-  }
+  await queryClient.prefetchInfiniteQuery(
+    ["pokemons", { pokemon_species_id: "asc" }],
+    () => fetchPokemons(0, { pokemon_species_id: "asc" })
+  );
 
   return {
     props: {
