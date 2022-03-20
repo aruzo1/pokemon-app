@@ -5,11 +5,15 @@ const Document = () => {
   return (
     <Html lang="en">
       <Head>
+        <meta property="og:type" content="article" />
         <meta
-          name="description"
+          property="og:description"
           content="The Pokédex is an electronic device created and designed to catalog and provide information regarding the various species of Pokémon featured in the Pokémon video game, anime and manga series."
         />
-        <meta name="author" content="Aruzo" />
+        <meta
+          property="description"
+          content="The Pokédex is an electronic device created and designed to catalog and provide information regarding the various species of Pokémon featured in the Pokémon video game, anime and manga series."
+        />
       </Head>
       <body>
         <Main />
