@@ -62,7 +62,7 @@ const Pokemons = () => {
           )}
         </ul>
         {isFetching && <Pokeball className="mx-auto my-8 animate-spin" />}
-        {error && (
+        {error && !isFetching && (
           <div className="text-center my-8">
             <h1 className="font-bold text-red-400 text-5xl">Error!</h1>
             <p className="text-gray-400">Try again later.</p>
