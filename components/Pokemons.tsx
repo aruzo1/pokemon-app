@@ -1,22 +1,20 @@
-import { useEffect, useState } from "react";
-import { Menu } from "@headlessui/react";
+import React, { useEffect, useState } from "react";
+import { Listbox } from "@headlessui/react";
 import { usePokemons } from "../graphql/queries";
 import ArrowDown from "../public/icons/arrowDown.svg";
 import Pokeball from "../public/icons/pokeball.svg";
 import Pokemon from "./Pokemon";
 
 const orderOptions = [
-  { name: "Lowest index", order: { pokemon_species_id: "asc" } },
-  { name: "Highest index", order: { pokemon_species_id: "desc" } },
-  { name: "A-Z", order: { name: "asc" } },
-  { name: "Z-A", order: { name: "desc" } },
+  { name: "Lowest index", value: { pokemon_species_id: "asc" } },
+  { name: "Highest index", value: { pokemon_species_id: "desc" } },
+  { name: "A - Z", value: { name: "asc" } },
+  { name: "Z - A", value: { name: "desc" } },
 ];
 
 const Pokemons = () => {
-  const [order, setOrder] = useState<{ [key: string]: any }>({
-    pokemon_species_id: "asc",
-  });
-  const { data, error, isFetching, fetchNextPage } = usePokemons(order);
+  const [order, setOrder] = useState(orderOptions[0]);
+  const { data, error, isFetching, fetchNextPage } = usePokemons(order.value);
 
   useEffect(() => {
     const fetchMoreIfBottom = () => {
@@ -36,23 +34,28 @@ const Pokemons = () => {
 
   return (
     <div className="container flex flex-col gap-8 py-8">
-      <Menu as="div" className="relative">
-        <Menu.Button className="flex items-center py-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
-          Sort by <ArrowDown className="ml-2" />
-        </Menu.Button>
-        <Menu.Items className="z-10 absolute top-full w-52 mt-4 p-2 rounded-lg bg-gray-800">
+      <Listbox as="div" className="relative" value={order} onChange={setOrder}>
+        <Listbox.Button className="flex items-center py-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
+          <p className="text-gray-400">
+            Sort by <span className="font-medium text-white">{order.name}</span>
+          </p>
+          <ArrowDown className="ml-2" />
+        </Listbox.Button>
+        <Listbox.Options className="flex flex-col gap-y-2 z-10 absolute top-full w-52 mt-4 p-2 rounded-lg bg-gray-800">
           {orderOptions.map((orderOption, i) => (
-            <Menu.Item
+            <Listbox.Option
               key={i}
               as="button"
-              className="w-full py-2 rounded-lg bg-gray-800 hover:bg-gray-700"
-              onClick={() => setOrder(orderOption.order)}
+              className={`w-full py-2 rounded-lg ${
+                order === orderOption ? "bg-gray-900" : "bg-gray-800"
+              } hover:bg-gray-700`}
+              value={orderOption}
             >
               {orderOption.name}
-            </Menu.Item>
+            </Listbox.Option>
           ))}
-        </Menu.Items>
-      </Menu>
+        </Listbox.Options>
+      </Listbox>
       <main>
         <ul className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {data?.pages.map((page) =>
@@ -61,9 +64,9 @@ const Pokemons = () => {
             ))
           )}
         </ul>
-        {isFetching && <Pokeball className="mx-auto my-8 animate-spin" />}
+        {isFetching && <Pokeball className="mx-auto mt-8 animate-spin" />}
         {error && !isFetching && (
-          <div className="text-center my-8">
+          <div className="text-center mt-8">
             <h1 className="font-bold text-red-400 text-5xl">Error!</h1>
             <p className="text-gray-400">Try again later.</p>
           </div>
