@@ -16,7 +16,7 @@ const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
   ));
 
   return (
-    <Link href={`pokemon/${pokemon.name}`} passHref>
+    <Link href={`/pokemon/${pokemon.name}`} passHref>
       <li className="flex flex-col p-4 rounded-lg cursor-pointer bg-gray-800 hover:scale-95 transition">
         <figure className="p-4 mb-4 rounded-lg bg-gray-700">
           <div className="aspect-square relative">
