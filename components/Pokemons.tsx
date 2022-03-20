@@ -24,7 +24,7 @@ const Pokemons = () => {
 
   return (
     <div className="container">
-      <section>
+      <main>
         <ul className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {data?.pages.map((page) =>
             page.map((pokemon) => (
@@ -39,7 +39,7 @@ const Pokemons = () => {
             <p className="text-gray-400">Try again later.</p>
           </div>
         )}
-      </section>
+      </main>
     </div>
   );
 };
