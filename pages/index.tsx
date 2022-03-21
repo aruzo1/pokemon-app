@@ -12,11 +12,11 @@ const Home: NextPage = () => {
         <meta name="og:title" content="Pokedex - Home" />
         <meta
           name="description"
-          content="Hello World!"
+          content="The Pokédex has a informations on all the Pokémon."
         />
         <meta
           name="og:description"
-          content="Hello World!"
+          content="The Pokédex has a informations on all the Pokémon."
         />
         <meta name="og:site_name" content="Pokedex" />
         <meta name="og:type" content="website" />
