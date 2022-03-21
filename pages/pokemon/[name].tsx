@@ -3,13 +3,13 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 const Pokemon: NextPage = () => {
-  const router = useRouter();
-  const { name } = router.query;
+  const { name } = useRouter().query;
 
   return (
     <div>
       <Head>
-        <title>{Math.random()}</title>
+        <title>Pokedex - {name}</title>
+        <meta property="og:title" content={`${name}`} />
       </Head>
       {name} description here.
     </div>
