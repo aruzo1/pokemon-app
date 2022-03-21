@@ -39,11 +39,12 @@ export const usePokemons = (order: {}) => {
     {
       getNextPageParam(lastPage, pages) {
         if (!lastPage[0]) return undefined;
-
         // Convert 2D array to 1D and return length
         const offset: PokemonType[] = [];
         return offset.concat(...pages).length;
       },
+      keepPreviousData: true,
+      staleTime: Infinity
     }
   );
 };
