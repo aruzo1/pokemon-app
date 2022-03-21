@@ -14,13 +14,16 @@ const orderOptions = [
 
 const Pokemons = () => {
   const [order, setOrder] = useState(orderOptions[0]);
-  const { data, error, isFetching, fetchNextPage } = usePokemons(order.value);
+  const { data, error, isFetching, fetchNextPage, hasNextPage } = usePokemons(
+    order.value
+  );
 
   useEffect(() => {
     const fetchMoreIfBottom = () => {
       if (
         !error &&
         !isFetching &&
+        hasNextPage &&
         window.scrollY + window.innerHeight >= document.body.scrollHeight - 200
       ) {
         fetchNextPage();
@@ -30,7 +33,7 @@ const Pokemons = () => {
     fetchMoreIfBottom();
     window.addEventListener("scroll", fetchMoreIfBottom);
     return () => window.removeEventListener("scroll", fetchMoreIfBottom);
-  }, [error, isFetching]);
+  }, [error, isFetching, hasNextPage]);
 
   return (
     <div className="container flex flex-col gap-8 py-8">
@@ -64,7 +67,7 @@ const Pokemons = () => {
         {isFetching && <Pokeball className="mx-auto mt-8 animate-spin" />}
         {error && !isFetching && (
           <div className="text-center mt-8">
-            <h1 className="font-bold text-red-400 text-5xl">Error!</h1>
+            <h1 className="font-bold text-red-500 text-5xl">Error!</h1>
             <p className="text-gray-400">Try again later.</p>
           </div>
         )}

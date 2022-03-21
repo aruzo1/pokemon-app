@@ -37,7 +37,9 @@ export const usePokemons = (order: {}) => {
     ["pokemons", order],
     ({ pageParam = 0 }) => fetchPokemons(pageParam, order),
     {
-      getNextPageParam(_, pages) {
+      getNextPageParam(lastPage, pages) {
+        if (!lastPage[0]) return undefined;
+
         // Convert 2D array to 1D and return length
         const offset: PokemonType[] = [];
         return offset.concat(...pages).length;
