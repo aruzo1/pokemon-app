@@ -1,7 +1,7 @@
 import Link from "next/link";
 import tailwindConfig from "../tailwind.config.js";
 import { PokemonType } from "../graphql/queries";
-import ImageWithFallback from "./ImageWithFallback";
+import PokemonImage from "./PokemonImage";
 import withPadding from "../helpers/withPadding";
 
 const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
@@ -20,11 +20,7 @@ const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
       <li className="flex flex-col p-4 rounded-lg cursor-pointer bg-gray-800 hover:scale-95 transition">
         <figure className="p-4 mb-4 rounded-lg bg-gray-700">
           <div className="aspect-square relative">
-            <ImageWithFallback
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
-              fallbackSrc={"/images/unknownPokemon.png"}
-              rest={{ alt: pokemon.name, layout: "fill" }}
-            />
+            <PokemonImage id={pokemon.id} alt={pokemon.name} />
           </div>
         </figure>
         <h3 className="mb-2 text-lg text-gray-400">
