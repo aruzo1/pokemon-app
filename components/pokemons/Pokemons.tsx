@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Listbox } from "@headlessui/react";
 import { usePokemons } from "../../graphql/queries";
-import ArrowDown from "../../public/icons/arrowDown.svg";
-import Pokeball from "../../public/icons/pokeball.svg";
+import Fade from "../ui/Fade";
 import Pokemon from "./Pokemon";
+import Pokeball from "../../public/icons/pokeball.svg";
+import ArrowDown from "../../public/icons/arrowDown.svg";
 
 const orderOptions = [
   { name: "Lowest index", value: { pokemon_species_id: "asc" } },
@@ -38,30 +39,37 @@ const Pokemons = () => {
 
   return (
     <div className="py-8">
-      <Listbox as="div" className="relative mb-8" value={order} onChange={setOrder}>
+      <Listbox
+        as="div"
+        className="relative mb-8"
+        value={order}
+        onChange={setOrder}
+      >
         <Listbox.Button className="flex items-center py-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
           <p>Sort by</p> <ArrowDown className="ml-2" />
         </Listbox.Button>
-        <Listbox.Options className="flex flex-col gap-y-2 z-10 absolute top-full w-52 mt-4 p-2 rounded-lg bg-gray-800">
-          {orderOptions.map((orderOption, i) => (
-            <Listbox.Option
-              key={i}
-              as="button"
-              className={`w-full py-2 rounded-lg ${
-                order === orderOption ? "bg-gray-900" : "bg-gray-800"
-              } hover:bg-gray-700`}
-              value={orderOption}
-            >
-              {orderOption.name}
-            </Listbox.Option>
-          ))}
-        </Listbox.Options>
+        <Fade>
+          <Listbox.Options className="flex flex-col gap-y-2 z-10 absolute top-full w-52 mt-4 p-2 rounded-lg bg-gray-800">
+            {orderOptions.map((orderOption, i) => (
+              <Listbox.Option
+                key={i}
+                as="button"
+                className={`w-full py-2 rounded-lg ${
+                  order === orderOption ? "bg-gray-900" : "bg-gray-800"
+                } hover:bg-gray-700`}
+                value={orderOption}
+              >
+                {orderOption.name}
+              </Listbox.Option>
+            ))}
+          </Listbox.Options>
+        </Fade>
       </Listbox>
       <main>
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {data?.pages.map((page) =>
             page.map((pokemon) => (
-              <Pokemon key={pokemon.id} pokemon={pokemon} />
+                <Pokemon key={pokemon.id} pokemon={pokemon} />
             ))
           )}
         </ul>
