@@ -19,7 +19,7 @@ const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
   return (
     <Link href={`/pokemon/${pokemon.name}`} passHref>
       <Fade show={true}>
-        <li className="flex flex-col p-4 rounded-lg cursor-pointer bg-gray-800 hover:scale-95 transition">
+        <li className="flex flex-col p-4 rounded-lg cursor-pointer bg-gray-800">
           <figure className="p-4 mb-4 rounded-lg bg-gray-700">
             <div className="aspect-square relative">
               <PokemonImage id={pokemon.id} alt={pokemon.name} />

@@ -44,7 +44,7 @@ const Pokemons = () => {
           <p>Sort by</p> <ArrowDown className="ml-2" />
         </Menu.Button>
         <Fade>
-          <Menu.Items className="flex flex-col gap-y-2 z-10 absolute top-full w-52 mt-4 p-2 rounded-lg bg-gray-800">
+          <Menu.Items className="flex flex-col gap-y-2 z-10 absolute origin-top-left top-full left-0 w-52 mt-4 p-2 rounded-lg drop-shadow-xl bg-gray-800">
             {orderOptions.map((orderOption, i) => (
               <Menu.Item
                 key={i}
