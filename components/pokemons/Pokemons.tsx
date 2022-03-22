@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Listbox } from "@headlessui/react";
-import { usePokemons } from "../graphql/queries";
-import ArrowDown from "../public/icons/arrowDown.svg";
-import Pokeball from "../public/icons/pokeball.svg";
+import { usePokemons } from "../../graphql/queries";
+import ArrowDown from "../../public/icons/arrowDown.svg";
+import Pokeball from "../../public/icons/pokeball.svg";
 import Pokemon from "./Pokemon";
 
 const orderOptions = [

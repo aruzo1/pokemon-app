@@ -1,8 +1,8 @@
 import Link from "next/link";
-import tailwindConfig from "../tailwind.config.js";
-import { PokemonType } from "../graphql/queries";
+import tailwindConfig from "../../tailwind.config.js";
+import { PokemonType } from "../../graphql/queries";
 import PokemonImage from "./PokemonImage";
-import withPadding from "../helpers/withPadding";
+import withPadding from "../../helpers/withPadding";
 
 const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
   const typesList = pokemon.types.map(({ type }, i) => (
