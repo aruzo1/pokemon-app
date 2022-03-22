@@ -1,6 +1,13 @@
+import ArrowTop from "../public/icons/arrowTop.svg";
+
 const TopScrollButton = () => {
   return (
-    <button className="fixed right-0 bottom-0 w-12 h-12 bg-gray-800"></button>
+    <button
+      onClick={() => window.scrollTo({ behavior: "smooth", top: 0 })}
+      className="fixed bottom-8 right-8 flex justify-center items-center w-12 h-12 drop-shadow-2xl rounded-full bg-gray-800 hover:bg-gray-700 transition"
+    >
+      <ArrowTop />
+    </button>
   );
 };
 
