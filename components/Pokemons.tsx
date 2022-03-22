@@ -51,11 +51,12 @@ const Pokemons = () => {
           Sort By
         </MenuButton>
         <MenuList bg="gray.800" border="none" p={2}>
-          {orderOptions.map((option) => (
+          {orderOptions.map((option, i) => (
             <MenuItem
+              key={i}
               rounded="lg"
               bg={order === option ? "gray.900" : ""}
-              _hover={{bg : "gray.700"}}
+              _hover={{ bg: "gray.700" }}
               onClick={() => setOrder(option)}
             >
               {option.name}

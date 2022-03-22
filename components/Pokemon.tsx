@@ -6,7 +6,7 @@ import PokemonImage from "./PokemonImage";
 
 const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
   return (
-    <Link href={`/pokemon/${pokemon.name}`}>
+    <Link href={`/pokemon/${pokemon.name}`} passHref>
       <Fade in={true}>
         <Grid as="li" gap={4} p={4} rounded="lg" bg="gray.800">
           <AspectRatio ratio={1} w="full" bg="gray.700" rounded="lg">
