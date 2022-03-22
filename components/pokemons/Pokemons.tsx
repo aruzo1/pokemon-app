@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Listbox } from "@headlessui/react";
+import { Menu } from "@headlessui/react";
 import { usePokemons } from "../../graphql/queries";
 import Fade from "../ui/Fade";
 import Pokemon from "./Pokemon";
@@ -39,37 +39,32 @@ const Pokemons = () => {
 
   return (
     <div className="py-8">
-      <Listbox
-        as="div"
-        className="relative mb-8"
-        value={order}
-        onChange={setOrder}
-      >
-        <Listbox.Button className="flex items-center py-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
+      <Menu as="div" className="relative mb-8">
+        <Menu.Button className="flex items-center py-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
           <p>Sort by</p> <ArrowDown className="ml-2" />
-        </Listbox.Button>
+        </Menu.Button>
         <Fade>
-          <Listbox.Options className="flex flex-col gap-y-2 z-10 absolute top-full w-52 mt-4 p-2 rounded-lg bg-gray-800">
+          <Menu.Items className="flex flex-col gap-y-2 z-10 absolute top-full w-52 mt-4 p-2 rounded-lg bg-gray-800">
             {orderOptions.map((orderOption, i) => (
-              <Listbox.Option
+              <Menu.Item
                 key={i}
                 as="button"
                 className={`w-full py-2 rounded-lg ${
                   order === orderOption ? "bg-gray-900" : "bg-gray-800"
                 } hover:bg-gray-700`}
-                value={orderOption}
+                onClick={() => setOrder(orderOption)}
               >
                 {orderOption.name}
-              </Listbox.Option>
+              </Menu.Item>
             ))}
-          </Listbox.Options>
+          </Menu.Items>
         </Fade>
-      </Listbox>
+      </Menu>
       <main>
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {data?.pages.map((page) =>
             page.map((pokemon) => (
-                <Pokemon key={pokemon.id} pokemon={pokemon} />
+              <Pokemon key={pokemon.id} pokemon={pokemon} />
             ))
           )}
         </ul>
