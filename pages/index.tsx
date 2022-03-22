@@ -2,11 +2,12 @@ import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { dehydrate, QueryClient } from "react-query";
 import Pokemons from "../components/Pokemons";
+import TopScrollButton from "../components/TopScrollButton";
 import { fetchPokemons } from "../graphql/queries";
 
 const Home: NextPage = () => {
   return (
-    <main>
+    <div className="container">
       <Head>
         <title>Pokedex - Home</title>
         <meta name="og:title" content="Pokedex - Home" />
@@ -24,7 +25,8 @@ const Home: NextPage = () => {
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <Pokemons />
-    </main>
+      <TopScrollButton />
+    </div>
   );
 };
 

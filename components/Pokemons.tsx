@@ -37,8 +37,8 @@ const Pokemons = () => {
   }, [isError, isFetching, hasNextPage]);
 
   return (
-    <div className="container flex flex-col gap-8 py-8">
-      <Listbox as="div" className="relative" value={order} onChange={setOrder}>
+    <div className="py-8">
+      <Listbox as="div" className="relative mb-8" value={order} onChange={setOrder}>
         <Listbox.Button className="flex items-center py-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
           <p>Sort by</p> <ArrowDown className="ml-2" />
         </Listbox.Button>
