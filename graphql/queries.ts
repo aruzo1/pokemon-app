@@ -5,7 +5,7 @@ const client = new GraphQLClient("https://beta.pokeapi.co/graphql/v1beta");
 
 const GET_POKEMONS = gql`
   query ($offset: Int!, $order: [pokemon_v2_pokemon_order_by!]) {
-    pokemons: pokemon_v2_pokemon(limit: 24, offset: $offset, order_by: $order) {
+    pokemons: pokemon_v2_pokemon(limit: 12, offset: $offset, order_by: $order) {
       id
       speciesId: pokemon_species_id
       name
@@ -43,7 +43,6 @@ export const usePokemons = (order: {}) => {
         return offset.concat(...pages).length;
       },
       keepPreviousData: true,
-      staleTime: Infinity,
     }
   );
 };

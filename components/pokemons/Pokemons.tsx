@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Menu } from "@headlessui/react";
-import { PokemonType, usePokemons } from "../../graphql/queries";
+import { usePokemons } from "../../graphql/queries";
 import ScaleFade from "../ui/ScaleFade";
 import Pokemon from "./Pokemon";
 import Pokeball from "../../public/icons/pokeball.svg";
@@ -15,7 +15,7 @@ const orderOptions = [
 
 const Pokemons = () => {
   const [order, setOrder] = useState(orderOptions[0]);
-  const { data, isError, isFetching, fetchNextPage, hasNextPage } = usePokemons(
+  const { data, isError, isFetching, fetchNextPage, hasNextPage, remove } = usePokemons(
     order.value
   );
 
@@ -52,7 +52,7 @@ const Pokemons = () => {
                 className={`w-full py-2 rounded-lg ${
                   order === orderOption ? "bg-gray-900" : "bg-gray-800"
                 } hover:bg-gray-700 transition`}
-                onClick={() => setOrder(orderOption)}
+                onClick={() => {remove(); setOrder(orderOption)}}
               >
                 {orderOption.name}
               </Menu.Item>
