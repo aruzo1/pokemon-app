@@ -7,8 +7,8 @@ import PokemonImage from "./PokemonImage";
 const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
   return (
     <motion.li
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, scale: 0.75 }}
+      animate={{ opacity: 1, scale: 1 }}
       className="flex flex-col gap-4 p-4 rounded-lg bg-gray-800"
     >
       <div className="p-4 rounded-lg bg-gray-700">

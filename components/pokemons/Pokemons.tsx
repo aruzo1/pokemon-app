@@ -15,9 +15,8 @@ const orderOptions = [
 
 const Pokemons = () => {
   const [order, setOrder] = useState(orderOptions[0]);
-  const { data, isError, isFetching, fetchNextPage, hasNextPage, remove } = usePokemons(
-    order.value
-  );
+  const { data, isError, isFetching, fetchNextPage, hasNextPage, remove } =
+    usePokemons(order.value);
 
   useEffect(() => {
     const fetchMoreIfBottom = () => {
@@ -52,7 +51,10 @@ const Pokemons = () => {
                 className={`w-full py-2 rounded-lg ${
                   order === orderOption ? "bg-gray-900" : "bg-gray-800"
                 } hover:bg-gray-700 transition`}
-                onClick={() => {remove(); setOrder(orderOption)}}
+                onClick={() => {
+                  remove();
+                  setOrder(orderOption);
+                }}
               >
                 {orderOption.name}
               </Menu.Item>
