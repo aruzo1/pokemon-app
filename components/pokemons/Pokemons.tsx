@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Menu } from "@headlessui/react";
 import { usePokemons } from "../../graphql/queries";
-import Fade from "../ui/Fade";
 import Pokemon from "./Pokemon";
 import Pokeball from "../../public/icons/pokeball.svg";
 import ArrowDown from "../../public/icons/arrowDown.svg";
@@ -38,44 +37,39 @@ const Pokemons = () => {
   }, [isError, isFetching, hasNextPage]);
 
   return (
-    <div className="py-8">
-      <Menu as="div" className="relative mb-8">
-        <Menu.Button className="flex items-center py-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
-          <p>Sort by</p> <ArrowDown className="ml-2" />
+    <div className="flex flex-col gap-4 py-4">
+      <Menu as="div" className="relative">
+        <Menu.Button className="py-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700">
+          Sort by <ArrowDown className="ml-1 inline" />
         </Menu.Button>
-        <Fade>
-          <Menu.Items className="flex flex-col gap-y-2 z-10 absolute origin-top-left top-full left-0 w-52 mt-4 p-2 rounded-lg drop-shadow-xl bg-gray-800">
-            {orderOptions.map((orderOption, i) => (
-              <Menu.Item
-                key={i}
-                as="button"
-                className={`w-full py-2 rounded-lg ${
-                  order === orderOption ? "bg-gray-900" : "bg-gray-800"
-                } hover:bg-gray-700`}
-                onClick={() => setOrder(orderOption)}
-              >
-                {orderOption.name}
-              </Menu.Item>
-            ))}
-          </Menu.Items>
-        </Fade>
+        <Menu.Items className="absolute z-10 flex flex-col gap-y-2 w-52 mt-4 p-2 rounded-lg drop-shadow-xl bg-gray-800">
+          {orderOptions.map((orderOption, i) => (
+            <Menu.Item
+              key={i}
+              as="button"
+              className={`w-full py-2 rounded-lg ${
+                order === orderOption ? "bg-gray-900" : "bg-gray-800"
+              } hover:bg-gray-700`}
+              onClick={() => setOrder(orderOption)}
+            >
+              {orderOption.name}
+            </Menu.Item>
+          ))}
+        </Menu.Items>
       </Menu>
-      <main>
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {data?.pages.map((page) =>
-            page.map((pokemon) => (
-              <Pokemon key={pokemon.id} pokemon={pokemon} />
-            ))
-          )}
-        </ul>
-        {isFetching && <Pokeball className="mx-auto mt-8 animate-spin" />}
-        {isError && !isFetching && (
-          <div className="text-center mt-8">
-            <h1 className="font-bold text-red-500 text-5xl">Error!</h1>
-            <p className="text-gray-400">Try again later.</p>
-          </div>
+
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {data?.pages.map((page) =>
+          page.map((pokemon) => <Pokemon key={pokemon.id} pokemon={pokemon} />)
         )}
-      </main>
+      </ul>
+      {isFetching && <Pokeball className="mx-auto animate-spin" />}
+      {isError && !isFetching && (
+        <div className="text-center">
+          <h1 className="font-bold text-red-500 text-5xl">Error!</h1>
+          <p className="text-gray-400">Try again later.</p>
+        </div>
+      )}
     </div>
   );
 };

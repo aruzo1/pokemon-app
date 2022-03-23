@@ -1,39 +1,36 @@
 import Link from "next/link";
-import tailwindConfig from "../../tailwind.config.js";
 import { PokemonType } from "../../graphql/queries";
-import Fade from "../ui/Fade";
-import PokemonImage from "./PokemonImage";
 import withPadding from "../../helpers/withPadding";
+import { theme } from "../../tailwind.config.js";
+import PokemonImage from "./PokemonImage";
 
 const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
-  const typesList = pokemon.types.map(({ type }, i) => (
-    <div
-      key={i}
-      style={{ background: tailwindConfig.theme.extend.colors[type.name] }}
-      className="rounded-lg py-2"
-    >
-      {type.name}
-    </div>
-  ));
-
   return (
     <Link href={`/pokemon/${pokemon.name}`} passHref>
-      <Fade show={true}>
-        <li className="flex flex-col p-4 rounded-lg cursor-pointer bg-gray-800">
-          <figure className="p-4 mb-4 rounded-lg bg-gray-700">
-            <div className="aspect-square relative">
-              <PokemonImage id={pokemon.id} alt={pokemon.name} />
-            </div>
-          </figure>
-          <h3 className="mb-2 text-lg text-gray-400">
-            #{withPadding(pokemon.speciesId)}
-          </h3>
-          <h2 className="mb-4 truncate font-bold text-2xl">{pokemon.name}</h2>
-          <div className="grid grid-flow-col gap-x-4 text-center text-gray-900">
-            {typesList}
+      <li className="flex flex-col gap-4 p-4 rounded-lg bg-gray-800">
+        <div className="p-4 rounded-lg bg-gray-700">
+          <div className="aspect-square relative">
+            <PokemonImage id={pokemon.id} alt={pokemon.name} />
           </div>
-        </li>
-      </Fade>
+        </div>
+        <div>
+          <p className="font-medium text-lg text-gray-400">
+            #{withPadding(pokemon.speciesId)}
+          </p>
+          <h2 className="truncate font-bold text-2xl">{pokemon.name}</h2>
+        </div>
+        <ul className="grid grid-flow-col gap-x-4 text-center text-gray-900">
+          {pokemon.types.map(({ type }, i) => (
+            <li
+              key={i}
+              style={{ background: theme.extend.colors[type.name] }}
+              className="rounded-lg py-2"
+            >
+              {type.name}
+            </li>
+          ))}
+        </ul>
+      </li>
     </Link>
   );
 };

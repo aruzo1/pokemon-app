@@ -1,9 +1,9 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { dehydrate, QueryClient } from "react-query";
-import Pokemons from "../components/pokemons/Pokemons";
-import TopScrollButton from "../components/ui/TopScrollButton";
 import { fetchPokemons } from "../graphql/queries";
+import TopScrollButton from "../components/TopScrollButton";
+import Pokemons from "../components/pokemons/Pokemons";
 
 const Home: NextPage = () => {
   return (

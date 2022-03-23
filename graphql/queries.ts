@@ -1,6 +1,5 @@
-import { gql } from "graphql-request";
+import { gql, GraphQLClient } from "graphql-request";
 import { useInfiniteQuery } from "react-query";
-import { GraphQLClient } from "graphql-request";
 
 const client = new GraphQLClient("https://beta.pokeapi.co/graphql/v1beta");
 
@@ -44,7 +43,7 @@ export const usePokemons = (order: {}) => {
         return offset.concat(...pages).length;
       },
       keepPreviousData: true,
-      staleTime: Infinity
+      staleTime: Infinity,
     }
   );
 };
