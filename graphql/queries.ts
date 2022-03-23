@@ -31,7 +31,7 @@ export const fetchPokemons = async (offset: number, order: {}) => {
     .then((res) => res.pokemons);
 };
 
-export const usePokemons = (order: {}) => {
+export const usePokemons = (order: {}, initialData: PokemonType[]) => {
   return useInfiniteQuery<PokemonType[]>(
     ["pokemons", order],
     ({ pageParam = 0 }) => fetchPokemons(pageParam, order),
@@ -44,6 +44,10 @@ export const usePokemons = (order: {}) => {
       },
       keepPreviousData: true,
       staleTime: Infinity,
+      initialData : {
+        pages: [initialData],
+        pageParams: [undefined]
+      },
     }
   );
 };

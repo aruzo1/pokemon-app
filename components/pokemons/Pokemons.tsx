@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Menu } from "@headlessui/react";
-import { usePokemons } from "../../graphql/queries";
+import { PokemonType, usePokemons } from "../../graphql/queries";
 import ScaleFade from "../ui/ScaleFade";
 import Pokemon from "./Pokemon";
 import Pokeball from "../../public/icons/pokeball.svg";
@@ -13,10 +13,11 @@ const orderOptions = [
   { name: "Z - A", value: { name: "desc" } },
 ];
 
-const Pokemons = () => {
+const Pokemons = ({ pokemons }: { pokemons: PokemonType[] }) => {
   const [order, setOrder] = useState(orderOptions[0]);
   const { data, isError, isFetching, fetchNextPage, hasNextPage } = usePokemons(
-    order.value
+    order.value,
+    pokemons
   );
 
   useEffect(() => {
