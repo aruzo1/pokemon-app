@@ -1,12 +1,12 @@
-import Link from "next/link";
+import { theme } from "../../tailwind.config.js";
 import { PokemonType } from "../../graphql/queries";
 import withPadding from "../../helpers/withPadding";
-import { theme } from "../../tailwind.config.js";
+import ScaleFade from "../ui/ScaleFade";
 import PokemonImage from "./PokemonImage";
 
 const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
   return (
-    <Link href={`/pokemon/${pokemon.name}`} passHref>
+    <ScaleFade show={true}>
       <li className="flex flex-col gap-4 p-4 rounded-lg bg-gray-800">
         <div className="p-4 rounded-lg bg-gray-700">
           <div className="aspect-square relative">
@@ -31,7 +31,7 @@ const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
           ))}
         </ul>
       </li>
-    </Link>
+    </ScaleFade>
   );
 };
 

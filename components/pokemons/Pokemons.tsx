@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Menu } from "@headlessui/react";
 import { usePokemons } from "../../graphql/queries";
+import ScaleFade from "../ui/ScaleFade";
 import Pokemon from "./Pokemon";
 import Pokeball from "../../public/icons/pokeball.svg";
 import ArrowDown from "../../public/icons/arrowDown.svg";
@@ -39,23 +40,25 @@ const Pokemons = () => {
   return (
     <div className="flex flex-col gap-4 py-4">
       <Menu as="div" className="relative">
-        <Menu.Button className="py-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700">
+        <Menu.Button className="py-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
           Sort by <ArrowDown className="ml-1 inline" />
         </Menu.Button>
-        <Menu.Items className="absolute z-10 flex flex-col gap-y-2 w-52 mt-4 p-2 rounded-lg drop-shadow-xl bg-gray-800">
-          {orderOptions.map((orderOption, i) => (
-            <Menu.Item
-              key={i}
-              as="button"
-              className={`w-full py-2 rounded-lg ${
-                order === orderOption ? "bg-gray-900" : "bg-gray-800"
-              } hover:bg-gray-700`}
-              onClick={() => setOrder(orderOption)}
-            >
-              {orderOption.name}
-            </Menu.Item>
-          ))}
-        </Menu.Items>
+        <ScaleFade>
+          <Menu.Items className="z-10 absolute origin-top-left flex flex-col gap-y-2 w-52 mt-4 p-2 rounded-lg drop-shadow-xl bg-gray-800">
+            {orderOptions.map((orderOption, i) => (
+              <Menu.Item
+                key={i}
+                as="button"
+                className={`w-full py-2 rounded-lg ${
+                  order === orderOption ? "bg-gray-900" : "bg-gray-800"
+                } hover:bg-gray-700 transition`}
+                onClick={() => setOrder(orderOption)}
+              >
+                {orderOption.name}
+              </Menu.Item>
+            ))}
+          </Menu.Items>
+        </ScaleFade>
       </Menu>
 
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
