@@ -54,9 +54,9 @@ const Pokemons = () => {
           {orderOptions.map((option, i) => (
             <MenuItem
               key={i}
-              rounded="lg"
-              bg={order === option ? "gray.900" : ""}
-              _hover={{ bg: "gray.700" }}
+              as={Button}
+              justifyContent="start"
+              bg={order === option ? "gray.900" : "gray.800"}
               _focus={{}}
               onClick={() => setOrder(option)}
             >
