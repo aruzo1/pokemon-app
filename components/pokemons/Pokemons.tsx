@@ -23,7 +23,7 @@ const Pokemons = () => {
     const fetchMoreIfBottom = () => {
       if (
         window.scrollY + window.innerHeight >=
-          document.body.scrollHeight - 200 &&
+          document.body.scrollHeight - 400 &&
         !isFetching &&
         !isError &&
         hasNextPage
