@@ -13,11 +13,10 @@ const orderOptions = [
   { name: "Z - A", value: { name: "desc" } },
 ];
 
-const Pokemons = ({ pokemons }: { pokemons: PokemonType[] }) => {
+const Pokemons = () => {
   const [order, setOrder] = useState(orderOptions[0]);
   const { data, isError, isFetching, fetchNextPage, hasNextPage } = usePokemons(
-    order.value,
-    pokemons
+    order.value
   );
 
   useEffect(() => {
