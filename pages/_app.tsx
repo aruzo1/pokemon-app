@@ -1,7 +1,6 @@
 import type { AppProps } from "next/app";
-import { ChakraProvider } from "@chakra-ui/react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
-import theme from "../styles/theme";
+import "../styles/globals.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,9 +17,7 @@ function PokedexApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <ChakraProvider theme={theme}>
-          <Component {...pageProps} />
-        </ChakraProvider>
+        <Component {...pageProps} />
       </Hydrate>
     </QueryClientProvider>
   );
