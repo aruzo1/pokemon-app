@@ -1,11 +1,14 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import { dehydrate, QueryClient } from "react-query";
-import { fetchPokemons } from "../graphql/queries";
+import { fetchPokemons, PokemonType } from "../graphql/queries";
 import TopScrollButton from "../components/TopScrollButton";
 import Pokemons from "../components/pokemons/Pokemons";
 
-const Home: NextPage = () => {
+interface Props {
+  pokemons: PokemonType[];
+}
+
+const Home: NextPage<Props> = ({ pokemons }) => {
   return (
     <div className="container">
       <Head>
@@ -24,24 +27,17 @@ const Home: NextPage = () => {
         <meta name="og:image" content="/thumbnail.jpg" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
-      <Pokemons />
+      <Pokemons pokemons={pokemons} />
       <TopScrollButton />
     </div>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchInfiniteQuery(
-    ["pokemons", { pokemon_species_id: "asc" }],
-    () => fetchPokemons(0, { pokemon_species_id: "asc" })
-  );
+  const pokemons = await fetchPokemons(0, { pokemon_species_id: "asc" });
 
   return {
-    props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
-    },
+    props: { pokemons },
     revalidate: 60,
   };
 };
