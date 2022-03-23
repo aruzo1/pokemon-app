@@ -57,6 +57,7 @@ const Pokemons = () => {
               rounded="lg"
               bg={order === option ? "gray.900" : ""}
               _hover={{ bg: "gray.700" }}
+              _focus={{}}
               onClick={() => setOrder(option)}
             >
               {option.name}
