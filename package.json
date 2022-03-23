@@ -1,5 +1,5 @@
 {
-  "name": "pokemon-app",
+  "name": "pokemon-app2",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^1.5.0",
+    "@chakra-ui/react": "^1.8.6",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "framer-motion": "^6.2.8",
     "graphql": "^16.3.0",
     "graphql-request": "^4.1.0",
     "next": "12.1.0",
@@ -19,13 +22,10 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^6.2.1",
-    "@types/node": "17.0.21",
-    "@types/react": "17.0.40",
-    "autoprefixer": "^10.4.4",
+    "@types/node": "17.0.22",
+    "@types/react": "17.0.41",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
-    "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.23",
     "typescript": "4.6.2"
   }
 }
