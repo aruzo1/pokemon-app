@@ -11,20 +11,18 @@ const Pokemons = (props: {
   const { pokemons, isError, isFetching } = props;
 
   return (
-    <main>
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {pokemons?.pages.map((page) =>
-          page.map((pokemon) => <Pokemon key={pokemon.id} pokemon={pokemon} />)
-        )}
-      </ul>
-      {isFetching && <Pokeball className="mx-auto animate-spin" />}
+    <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {pokemons?.pages.map((page) =>
+        page.map((pokemon) => <Pokemon key={pokemon.id} pokemon={pokemon} />)
+      )}
+      {isFetching && <Pokeball className="col-span-full mx-auto animate-spin" />}
       {isError && !isFetching && (
-        <div className="text-center">
+        <div className="col-span-full text-center">
           <h1 className="font-bold text-red-500 text-5xl">Error!</h1>
           <p className="text-gray-400">Try again later.</p>
         </div>
       )}
-    </main>
+    </ul>
   );
 };
 
