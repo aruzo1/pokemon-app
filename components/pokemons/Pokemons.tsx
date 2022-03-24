@@ -1,70 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Menu } from "@headlessui/react";
-import { usePokemons } from "../../graphql/queries";
-import ScaleFade from "../ui/ScaleFade";
+import { InfiniteData } from "react-query";
+import { PokemonType } from "../../graphql/queries";
 import Pokemon from "./Pokemon";
 import Pokeball from "../../public/icons/pokeball.svg";
-import ArrowDown from "../../public/icons/arrowDown.svg";
 
-const orderOptions = [
-  { name: "Lowest index", value: { pokemon_species_id: "asc" } },
-  { name: "Highest index", value: { pokemon_species_id: "desc" } },
-  { name: "A - Z", value: { name: "asc" } },
-  { name: "Z - A", value: { name: "desc" } },
-];
-
-const Pokemons = () => {
-  const [order, setOrder] = useState(orderOptions[0]);
-  const { data, isError, isFetching, fetchNextPage, hasNextPage, remove } =
-    usePokemons(order.value);
-
-  useEffect(() => {
-    const fetchMoreIfBottom = () => {
-      if (
-        window.scrollY + window.innerHeight >=
-          document.body.scrollHeight - 400 &&
-        !isFetching &&
-        !isError &&
-        hasNextPage
-      ) {
-        fetchNextPage();
-      }
-    };
-
-    fetchMoreIfBottom();
-    window.addEventListener("scroll", fetchMoreIfBottom);
-    return () => window.removeEventListener("scroll", fetchMoreIfBottom);
-  }, [isError, isFetching, hasNextPage]);
+const Pokemons = (props: {
+  pokemons?: InfiniteData<PokemonType[]>;
+  isFetching: boolean;
+  isError: boolean;
+}) => {
+  const { pokemons, isError, isFetching } = props;
 
   return (
-    <div className="flex flex-col gap-4 py-4">
-      <Menu as="div" className="relative">
-        <Menu.Button className="py-2 px-4 rounded-lg font-bold bg-gray-800 hover:bg-gray-700 transition">
-          Sort by <ArrowDown className="ml-1 inline" />
-        </Menu.Button>
-        <ScaleFade>
-          <Menu.Items className="z-10 absolute origin-top-left flex flex-col gap-y-2 w-52 mt-4 p-2 rounded-lg drop-shadow-xl bg-gray-800">
-            {orderOptions.map((orderOption, i) => (
-              <Menu.Item
-                key={i}
-                as="button"
-                className={`w-full py-2 rounded-lg font-medium ${
-                  order === orderOption ? "bg-gray-900" : "bg-gray-800"
-                } hover:bg-gray-700 transition`}
-                onClick={() => {
-                  remove();
-                  setOrder(orderOption);
-                }}
-              >
-                {orderOption.name}
-              </Menu.Item>
-            ))}
-          </Menu.Items>
-        </ScaleFade>
-      </Menu>
-
+    <main>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {data?.pages.map((page) =>
+        {pokemons?.pages.map((page) =>
           page.map((pokemon) => <Pokemon key={pokemon.id} pokemon={pokemon} />)
         )}
       </ul>
@@ -75,7 +24,7 @@ const Pokemons = () => {
           <p className="text-gray-400">Try again later.</p>
         </div>
       )}
-    </div>
+    </main>
   );
 };
 
