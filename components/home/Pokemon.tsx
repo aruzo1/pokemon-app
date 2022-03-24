@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { theme } from "../../tailwind.config.js";
-import { PokemonType } from "../../graphql/queries";
-import withPadding from "../../helpers/withPadding";
+import { IPokemon } from "../../lib/types";
+import withPadding from "../../lib/helpers/withPadding";
 import PokemonImage from "./PokemonImage";
 
-const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => (
+const Pokemon = ({ pokemon }: { pokemon: IPokemon }) => (
   <motion.li
     initial={{ opacity: 0, scale: 0.75 }}
     animate={{ opacity: 1, scale: 1 }}

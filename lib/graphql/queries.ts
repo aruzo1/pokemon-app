@@ -1,5 +1,6 @@
 import { gql, GraphQLClient } from "graphql-request";
 import { useInfiniteQuery } from "react-query";
+import { IOrderValue, IPokemon } from "../types";
 
 const client = new GraphQLClient("https://beta.pokeapi.co/graphql/v1beta");
 
@@ -18,28 +19,21 @@ const GET_POKEMONS = gql`
   }
 `;
 
-export type PokemonType = {
-  id: number;
-  speciesId: number;
-  name: string;
-  types: { type: { name: string } }[];
-};
-
-export const fetchPokemons = async (offset: number, order: {}) => {
+export const fetchPokemons = async (offset: number, order: IOrderValue) => {
   return client
     .request(GET_POKEMONS, { offset, order })
     .then((res) => res.pokemons);
 };
 
-export const usePokemons = (order: {}) => {
-  return useInfiniteQuery<PokemonType[]>(
+export const usePokemons = (order: IOrderValue) => {
+  return useInfiniteQuery<IPokemon[]>(
     ["pokemons", order],
     ({ pageParam = 0 }) => fetchPokemons(pageParam, order),
     {
       getNextPageParam(lastPage, pages) {
         if (!lastPage[0]) return undefined;
         // Convert 2D array to 1D and return length
-        const offset: PokemonType[] = [];
+        const offset: IPokemon[] = [];
         return offset.concat(...pages).length;
       },
       keepPreviousData: true,

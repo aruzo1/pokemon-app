@@ -1,10 +1,10 @@
 import { InfiniteData } from "react-query";
-import { PokemonType } from "../../graphql/queries";
+import { IPokemon } from "../../lib/types";
 import Pokemon from "./Pokemon";
 import Pokeball from "../../public/icons/pokeball.svg";
 
 const Pokemons = (props: {
-  pokemons?: InfiniteData<PokemonType[]>;
+  pokemons?: InfiniteData<IPokemon[]>;
   isFetching: boolean;
   isError: boolean;
 }) => {
