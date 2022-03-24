@@ -11,3 +11,9 @@
     font-family: Montserrat, sans;
   }
 }
+
+@layer components {
+  .bor {
+    border: 1px solid theme("colors.gray.700");
+  }
+}

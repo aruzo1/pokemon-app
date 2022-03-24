@@ -19,7 +19,7 @@ const SortMenu = (props: {
 
   return (
     <Menu as="div" className="relative">
-      <Menu.Button className="py-2 px-4 rounded-lg font-bold bg-gray-800 hover:bg-gray-700 transition">
+      <Menu.Button className="py-2 px-4 rounded-lg bor font-bold bg-gray-800 hover:bg-gray-700 transition">
         Sort by <ArrowDown className="ml-1 inline" />
       </Menu.Button>
       <Transition
@@ -31,7 +31,7 @@ const SortMenu = (props: {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-75"
       >
-        <Menu.Items className="z-10 absolute origin-top-left flex flex-col gap-y-2 w-52 mt-4 p-2 rounded-lg drop-shadow-xl bg-gray-800">
+        <Menu.Items className="z-10 absolute origin-top-left flex flex-col gap-y-2 w-52 mt-4 p-2 rounded-lg drop-shadow-xl bor bg-gray-800">
           {orderOptions.map((orderOption, i) => (
             <Menu.Item
               key={i}
