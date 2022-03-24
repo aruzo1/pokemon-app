@@ -17,17 +17,17 @@ const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => {
         </div>
       </div>
       <div>
-        <p className="font-medium text-lg text-gray-400">
+        <h3 className="font-bold text-lg text-gray-400">
           #{withPadding(pokemon.speciesId)}
-        </p>
-        <h2 className="truncate font-bold text-2xl">{pokemon.name}</h2>
+        </h3>
+        <h2 className="truncate font-extrabold text-2xl">{pokemon.name}</h2>
       </div>
       <ul className="grid grid-flow-col gap-x-4 text-center text-gray-900">
         {pokemon.types.map(({ type }, i) => (
           <li
             key={i}
             style={{ background: theme.extend.colors[type.name] }}
-            className="rounded-lg py-2"
+            className="py-2 rounded-lg font-medium"
           >
             {type.name}
           </li>

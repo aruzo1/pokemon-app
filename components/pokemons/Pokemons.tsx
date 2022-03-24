@@ -39,7 +39,7 @@ const Pokemons = () => {
   return (
     <div className="flex flex-col gap-4 py-4">
       <Menu as="div" className="relative">
-        <Menu.Button className="py-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
+        <Menu.Button className="py-2 px-4 rounded-lg font-bold bg-gray-800 hover:bg-gray-700 transition">
           Sort by <ArrowDown className="ml-1 inline" />
         </Menu.Button>
         <ScaleFade>
@@ -48,7 +48,7 @@ const Pokemons = () => {
               <Menu.Item
                 key={i}
                 as="button"
-                className={`w-full py-2 rounded-lg ${
+                className={`w-full py-2 rounded-lg font-medium ${
                   order === orderOption ? "bg-gray-900" : "bg-gray-800"
                 } hover:bg-gray-700 transition`}
                 onClick={() => {
