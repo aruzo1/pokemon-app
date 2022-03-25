@@ -14,6 +14,9 @@
 
 @layer components {
   .bor {
-    border: 1px solid theme("colors.gray.700");
+    @apply border border-solid border-gray-700;
+  }
+  .center {
+    @apply flex justify-center items-center;
   }
 }
