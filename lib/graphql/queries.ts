@@ -8,7 +8,7 @@ const GET_POKEMONS = gql`
   query (
     $offset: Int!
     $order: [pokemon_v2_pokemon_order_by!]
-    $types: [String!]
+    $types: [String]
   ) {
     pokemons: pokemon_v2_pokemon(
       limit: 12
@@ -52,7 +52,6 @@ export const usePokemons = (order: IOrderValue, types: string[]) => {
         return offset.concat(...pages).length;
       },
       keepPreviousData: true,
-      staleTime: Infinity,
     }
   );
 };

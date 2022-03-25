@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import Checkbox from "../Checkbox";
 
-const typesOptions = ["normal", "fire", "water", "grass", "flying"];
+export const typesOptions = ["normal", "fire", "water", "grass", "flying"];
 
 const TypesMenu = (props: { setTypes: Dispatch<SetStateAction<string[]>> }) => {
   const { setTypes } = props;
