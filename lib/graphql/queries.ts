@@ -1,5 +1,6 @@
 import { gql, GraphQLClient } from "graphql-request";
 import { useInfiniteQuery } from "react-query";
+import { typesOptions } from "../../components/home/TypesMenu";
 import { IOrderValue, IPokemon } from "../types";
 
 const client = new GraphQLClient("https://beta.pokeapi.co/graphql/v1beta");
@@ -41,6 +42,8 @@ export const fetchPokemons = async (
 };
 
 export const usePokemons = (order: IOrderValue, types: string[]) => {
+  if (!types[0]) types = typesOptions;
+
   return useInfiniteQuery<IPokemon[]>(
     ["pokemons", order, types],
     ({ pageParam = 0 }) => fetchPokemons(pageParam, order, types),

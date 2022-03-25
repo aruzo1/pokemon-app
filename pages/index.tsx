@@ -9,7 +9,7 @@ import Pokemons from "../components/home/Pokemons";
 
 const Home: NextPage = () => {
   const [order, setOrder] = useState(orderOptions[0]);
-  const [types, setTypes] = useState(typesOptions);
+  const [types, setTypes] = useState<string[]>([]);
   const pokemons = usePokemons(order.value, types);
 
   return (

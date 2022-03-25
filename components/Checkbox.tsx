@@ -7,7 +7,7 @@ const Checkbox = (props: {
   onUncheck: (value: string) => void;
 }) => {
   const { value, onCheck, onUncheck } = props;
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
 
   const toggleHandler = () => {
     if (!checked) onCheck(value);
