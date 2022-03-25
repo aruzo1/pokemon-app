@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { dehydrate, QueryClient } from "react-query";
@@ -9,34 +9,22 @@ import Pokemons from "../components/home/Pokemons";
 
 const Home: NextPage = () => {
   const [order, setOrder] = useState(orderOptions[0]);
-  const { data, isError, isFetching, fetchNextPage, hasNextPage, remove } =
-    usePokemons(order.value);
-
-  useEffect(() => {
-    const fetchMoreIfBottom = () => {
-      if (
-        !isFetching &&
-        !isError &&
-        hasNextPage &&
-        window.scrollY + window.innerHeight >= document.body.scrollHeight - 200
-      ) {
-        fetchNextPage();
-      }
-    };
-
-    fetchMoreIfBottom();
-    window.addEventListener("scroll", fetchMoreIfBottom);
-    return () => window.removeEventListener("scroll", fetchMoreIfBottom);
-  }, [isError, isFetching, hasNextPage, fetchNextPage]);
+  const pokemons = usePokemons(order.value);
 
   return (
     <div className="container grid grid-cols-5 gap-y-4 py-4">
       <Head>
         <title>Pokedex - Home</title>
       </Head>
-      <SortMenu order={order} setOrder={setOrder} remove={remove} />
+      <SortMenu order={order} setOrder={setOrder} remove={pokemons.remove} />
       <TypesMenu />
-      <Pokemons pokemons={data} isFetching={isFetching} isError={isError} />
+      <Pokemons
+        pokemons={pokemons.data}
+        isFetching={pokemons.isFetching}
+        isError={pokemons.isError}
+        hasNextPage={pokemons.hasNextPage}
+        fetchNextPage={pokemons.fetchNextPage}
+      />
     </div>
   );
 };
@@ -52,7 +40,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
-    revalidate: 60 * 60 * 24,
   };
 };
 

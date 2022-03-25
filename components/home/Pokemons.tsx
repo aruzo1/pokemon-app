@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { InfiniteData } from "react-query";
 import { IPokemon } from "../../lib/types";
 import Pokemon from "./Pokemon";
@@ -7,8 +8,27 @@ const Pokemons = (props: {
   pokemons?: InfiniteData<IPokemon[]>;
   isFetching: boolean;
   isError: boolean;
+  hasNextPage?: boolean;
+  fetchNextPage: () => void;
 }) => {
-  const { pokemons, isError, isFetching } = props;
+  const { pokemons, isError, isFetching, hasNextPage, fetchNextPage } = props;
+
+  useEffect(() => {
+    const fetchMoreIfBottom = () => {
+      if (
+        !isFetching &&
+        !isError &&
+        hasNextPage &&
+        window.scrollY + window.innerHeight >= document.body.scrollHeight - 200
+      ) {
+        fetchNextPage();
+      }
+    };
+
+    fetchMoreIfBottom();
+    window.addEventListener("scroll", fetchMoreIfBottom);
+    return () => window.removeEventListener("scroll", fetchMoreIfBottom);
+  }, [isError, isFetching, hasNextPage, fetchNextPage]);
 
   return (
     <ul className="col-start-2 col-end-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
