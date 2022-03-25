@@ -5,8 +5,19 @@ import { IOrderValue, IPokemon } from "../types";
 const client = new GraphQLClient("https://beta.pokeapi.co/graphql/v1beta");
 
 const GET_POKEMONS = gql`
-  query ($offset: Int!, $order: [pokemon_v2_pokemon_order_by!]) {
-    pokemons: pokemon_v2_pokemon(limit: 12, offset: $offset, order_by: $order) {
+  query (
+    $offset: Int!
+    $order: [pokemon_v2_pokemon_order_by!]
+    $types: [String!]
+  ) {
+    pokemons: pokemon_v2_pokemon(
+      limit: 12
+      offset: $offset
+      order_by: $order
+      where: {
+        pokemon_v2_pokemontypes: { pokemon_v2_type: { name: { _in: $types } } }
+      }
+    ) {
       id
       speciesId: pokemon_species_id
       name
@@ -19,16 +30,20 @@ const GET_POKEMONS = gql`
   }
 `;
 
-export const fetchPokemons = async (offset: number, order: IOrderValue) => {
+export const fetchPokemons = async (
+  offset: number,
+  order: IOrderValue,
+  types: string[]
+) => {
   return client
-    .request(GET_POKEMONS, { offset, order })
+    .request(GET_POKEMONS, { offset, order, types })
     .then((res) => res.pokemons);
 };
 
-export const usePokemons = (order: IOrderValue) => {
+export const usePokemons = (order: IOrderValue, types: string[]) => {
   return useInfiniteQuery<IPokemon[]>(
-    ["pokemons", order],
-    ({ pageParam = 0 }) => fetchPokemons(pageParam, order),
+    ["pokemons", order, types],
+    ({ pageParam = 0 }) => fetchPokemons(pageParam, order, types),
     {
       getNextPageParam(lastPage, pages) {
         if (!lastPage[0]) return undefined;
@@ -37,6 +52,7 @@ export const usePokemons = (order: IOrderValue) => {
         return offset.concat(...pages).length;
       },
       keepPreviousData: true,
+      staleTime: Infinity,
     }
   );
 };

@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import Checkbox from "../Checkbox";
 
 const typesOptions = ["normal", "fire", "water", "grass", "flying"];
 
-const TypesMenu = () => {
-  const [types, setTypes] = useState<string[]>([]);
+const TypesMenu = (props: { setTypes: Dispatch<SetStateAction<string[]>> }) => {
+  const { setTypes } = props;
 
   const addType = (type: string) => {
-    setTypes([...types, type]);
+    setTypes((prev) => [...prev, type]);
   };
   const removeType = (type: string) => {
-    setTypes(types.filter((currentType) => currentType !== type));
+    setTypes((prev) => prev.filter((currentType) => currentType !== type));
   };
 
   return (

@@ -9,7 +9,8 @@ import Pokemons from "../components/home/Pokemons";
 
 const Home: NextPage = () => {
   const [order, setOrder] = useState(orderOptions[0]);
-  const pokemons = usePokemons(order.value);
+  const [types, setTypes] = useState<string[]>([]);
+  const pokemons = usePokemons(order.value, types);
 
   return (
     <div className="container grid grid-cols-5 gap-y-4 py-4">
@@ -17,7 +18,7 @@ const Home: NextPage = () => {
         <title>Pokedex - Home</title>
       </Head>
       <SortMenu order={order} setOrder={setOrder} remove={pokemons.remove} />
-      <TypesMenu />
+      <TypesMenu setTypes={setTypes} />
       <Pokemons
         pokemons={pokemons.data}
         isFetching={pokemons.isFetching}
@@ -32,8 +33,8 @@ const Home: NextPage = () => {
 export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery(
-    ["pokemons", orderOptions[0].value],
-    () => fetchPokemons(0, orderOptions[0].value)
+    ["pokemons", orderOptions[0].value, []],
+    () => fetchPokemons(0, orderOptions[0].value, [])
   );
 
   return {
