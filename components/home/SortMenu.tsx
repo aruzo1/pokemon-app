@@ -1,4 +1,4 @@
-import { Menu, Transition } from "@headlessui/react";
+import { Menu } from "@headlessui/react";
 import { IOrder } from "../../lib/types";
 import ArrowDown from "../../public/icons/arrowDown.svg";
 
