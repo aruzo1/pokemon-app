@@ -3,11 +3,12 @@ import Check from "../public/icons/check.svg";
 
 const Checkbox = (props: {
   value: string;
+  state?: boolean;
   onCheck: (value: string) => void;
   onUncheck: (value: string) => void;
 }) => {
-  const { value, onCheck, onUncheck } = props;
-  const [checked, setChecked] = useState(false);
+  const { value, state, onCheck, onUncheck } = props;
+  const [checked, setChecked] = useState(state || false);
 
   const toggleHandler = () => {
     if (!checked) onCheck(value);

@@ -13,12 +13,12 @@ const Home: NextPage = () => {
   const pokemons = usePokemons(order.value, types);
 
   return (
-    <div className="container grid grid-cols-5 gap-y-4 py-4">
+    <div className="container grid grid-cols-5 gap-4 py-4">
       <Head>
         <title>Pokedex - Home</title>
       </Head>
       <SortMenu order={order} setOrder={setOrder} remove={pokemons.remove} />
-      <TypesMenu setTypes={setTypes} />
+      <TypesMenu types={types} setTypes={setTypes} />
       <Pokemons
         pokemons={pokemons.data}
         isFetching={pokemons.isFetching}
