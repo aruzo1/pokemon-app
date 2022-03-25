@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { IOrder } from "../../lib/types";
 import ArrowDown from "../../public/icons/arrowDown.svg";
@@ -22,33 +21,23 @@ const SortMenu = (props: {
       <Menu.Button className="py-2 px-4 rounded-lg bor font-bold bg-gray-800">
         Sort by <ArrowDown className="ml-1 inline" />
       </Menu.Button>
-      <Transition
-        as={Fragment}
-        enter="transition"
-        enterFrom="opacity-0 scale-75"
-        enterTo="opacity-100 scale-100"
-        leave="transition"
-        leaveFrom="opacity-100 scale-100"
-        leaveTo="opacity-0 scale-75"
-      >
-        <Menu.Items className="z-10 absolute right-0 origin-top-right flex flex-col gap-y-2 w-52 mt-4 p-2 rounded-lg drop-shadow-xl bor bg-gray-800">
-          {orderOptions.map((orderOption, i) => (
-            <Menu.Item
-              key={i}
-              as="button"
-              className={`w-full py-2 rounded-lg font-medium ${
-                order === orderOption ? "bg-gray-900" : "bg-gray-800"
-              } hover:bg-gray-700 transition`}
-              onClick={() => {
-                remove();
-                setOrder(orderOption);
-              }}
-            >
-              {orderOption.name}
-            </Menu.Item>
-          ))}
-        </Menu.Items>
-      </Transition>
+      <Menu.Items className="z-10 absolute right-0 origin-top-right flex flex-col gap-y-2 w-52 mt-4 p-2 rounded-lg drop-shadow-xl bor bg-gray-800">
+        {orderOptions.map((orderOption, i) => (
+          <Menu.Item
+            key={i}
+            as="button"
+            className={`w-full py-2 rounded-lg font-medium ${
+              order === orderOption ? "bg-gray-900" : "bg-gray-800"
+            } hover:bg-gray-700`}
+            onClick={() => {
+              remove();
+              setOrder(orderOption);
+            }}
+          >
+            {orderOption.name}
+          </Menu.Item>
+        ))}
+      </Menu.Items>
     </Menu>
   );
 };
