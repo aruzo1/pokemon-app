@@ -4,6 +4,7 @@ import Head from "next/head";
 import { dehydrate, QueryClient } from "react-query";
 import { fetchPokemons, usePokemons } from "../lib/graphql/queries";
 import SortMenu, { orderOptions } from "../components/home/SortMenu";
+import TypesMenu from "../components/home/TypesMenu";
 import Pokemons from "../components/home/Pokemons";
 
 const Home: NextPage = () => {
@@ -34,7 +35,7 @@ const Home: NextPage = () => {
         <title>Pokedex - Home</title>
       </Head>
       <SortMenu order={order} setOrder={setOrder} remove={remove} />
-      <div className="col-span-1">Types</div>
+      <TypesMenu />
       <Pokemons pokemons={data} isFetching={isFetching} isError={isError} />
     </div>
   );
