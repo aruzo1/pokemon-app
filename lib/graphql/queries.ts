@@ -55,7 +55,6 @@ export const usePokemons = (order: IOrderValue, types: string[]) => {
         return offset.concat(...pages).length;
       },
       keepPreviousData: true,
-      staleTime: Infinity,
     }
   );
 };
