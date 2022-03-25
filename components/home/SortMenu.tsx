@@ -18,7 +18,7 @@ const SortMenu = (props: {
   const { order, setOrder, remove } = props;
 
   return (
-    <Menu as="div" className="relative justify-self-end">
+    <Menu as="div" className="col-span-full relative justify-self-end">
       <Menu.Button className="py-2 px-4 rounded-lg bor font-bold bg-gray-800 hover:bg-gray-700 transition">
         Sort by <ArrowDown className="ml-1 inline" />
       </Menu.Button>

@@ -29,11 +29,12 @@ const Home: NextPage = () => {
   }, [isError, isFetching, hasNextPage, fetchNextPage]);
 
   return (
-    <div className="container grid gap-y-4 py-4">
+    <div className="container grid grid-cols-5 gap-y-4 py-4">
       <Head>
         <title>Pokedex - Home</title>
       </Head>
       <SortMenu order={order} setOrder={setOrder} remove={remove} />
+      <div className="col-span-1">Types</div>
       <Pokemons pokemons={data} isFetching={isFetching} isError={isError} />
     </div>
   );
