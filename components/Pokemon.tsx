@@ -1,6 +1,6 @@
-import { theme } from "../../tailwind.config.js";
-import { PokemonType } from "../../lib/types";
-import withPadding from "../../lib/helpers/withPadding";
+import { theme } from "../tailwind.config.js";
+import { PokemonType } from "../lib/types";
+import withPadding from "../lib/helpers/withPadding";
 import PokemonImage from "./PokemonImage";
 
 const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => (

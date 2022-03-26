@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { FiltersState, OrderValue } from "../types";
+import { OrderValue } from "../types";
 import client from "./client";
 
 const GET_POKEMONS = gql`
@@ -26,20 +26,8 @@ const GET_POKEMONS = gql`
   }
 `;
 
-export const fetchPokemons = async (
-  offset: number,
-  order: OrderValue,
-  { types }: FiltersState
-) => {
+export const fetchPokemons = async (offset: number, order: OrderValue) => {
   return client
-    .request(GET_POKEMONS, {
-      offset,
-      order,
-      types: types[0] && {
-        pokemon_v2_pokemontypes: {
-          pokemon_v2_type: { name: { _in: types } },
-        },
-      },
-    })
+    .request(GET_POKEMONS, { offset, order })
     .then((res) => res.pokemons);
 };
