@@ -14,12 +14,9 @@ export interface Order {
 }
 
 export interface FiltersState {
-  order: Order;
   types: string[];
 }
-export type FiltersAction =
-  | {
-      type: "ADD_TYPE" | "REMOVE_TYPE";
-      payload: string;
-    }
-  | { type: "SET_ORDER"; payload: Order };
+export type FiltersAction = {
+  type: "ADD_TYPE" | "REMOVE_TYPE";
+  payload: string;
+};
