@@ -1,8 +1,8 @@
 import { Menu } from "@headlessui/react";
-import { IOrder } from "../../lib/types";
+import { Order } from "../../lib/types";
 import ArrowDown from "../../public/icons/arrowDown.svg";
 
-export const orderOptions: IOrder[] = [
+export const orderOptions: Order[] = [
   { name: "Lowest index", value: { pokemon_species_id: "asc" } },
   { name: "Highest index", value: { pokemon_species_id: "desc" } },
   { name: "A - Z", value: { name: "asc" } },
@@ -10,11 +10,10 @@ export const orderOptions: IOrder[] = [
 ];
 
 const SortMenu = (props: {
-  order: IOrder;
-  setOrder: (order: IOrder) => void;
-  remove: () => void;
+  order: Order;
+  setOrder: (payload: Order) => void;
 }) => {
-  const { order, setOrder, remove } = props;
+  const { order, setOrder } = props;
 
   return (
     <Menu as="div" className="col-span-full relative justify-self-end">
@@ -30,7 +29,6 @@ const SortMenu = (props: {
               order === orderOption ? "bg-gray-900" : "bg-gray-800"
             } hover:bg-gray-700`}
             onClick={() => {
-              remove();
               setOrder(orderOption);
             }}
           >

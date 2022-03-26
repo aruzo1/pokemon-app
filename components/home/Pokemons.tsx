@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { InfiniteData } from "react-query";
-import { IPokemon } from "../../lib/types";
+import { PokemonType } from "../../lib/types";
 import Pokemon from "./Pokemon";
 import Pokeball from "../../public/icons/pokeball.svg";
 
 const Pokemons = (props: {
-  pokemons?: InfiniteData<IPokemon[]>;
+  pokemons?: InfiniteData<PokemonType[]>;
   isFetching: boolean;
   isError: boolean;
   hasNextPage?: boolean;

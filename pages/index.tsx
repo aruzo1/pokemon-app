@@ -1,24 +1,43 @@
-import { useState } from "react";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import { dehydrate, QueryClient } from "react-query";
-import { fetchPokemons, usePokemons } from "../lib/graphql/queries";
-import SortMenu, { orderOptions } from "../components/home/SortMenu";
-import TypesMenu, { typesOptions } from "../components/home/TypesMenu";
+import usePokemons from "../lib/hooks/usePokemons";
+import SortMenu from "../components/home/SortMenu";
+import TypesMenu from "../components/home/TypesMenu";
 import Pokemons from "../components/home/Pokemons";
+import useFilters, {
+  initialState as initialFilters,
+} from "../lib/hooks/useFilters";
+import { fetchPokemons } from "../lib/graphql/queries";
+import { PokemonType } from "../lib/types";
 
-const Home: NextPage = () => {
-  const [order, setOrder] = useState(orderOptions[0]);
-  const [types, setTypes] = useState<string[]>([]);
-  const pokemons = usePokemons(order.value, types);
+interface Props {
+  initialPokemons: PokemonType[];
+}
+
+const Home: NextPage<Props> = ({ initialPokemons }) => {
+  const [filters, filtersDispatch] = useFilters();
+  const pokemons = usePokemons(filters, initialPokemons);
 
   return (
     <div className="container grid grid-cols-5 gap-4 py-4">
       <Head>
         <title>Pokedex - Home</title>
       </Head>
-      <SortMenu order={order} setOrder={setOrder} remove={pokemons.remove} />
-      <TypesMenu types={types} setTypes={setTypes} />
+      <SortMenu
+        order={filters.order}
+        setOrder={(payload) => {
+          filtersDispatch({ type: "SET_ORDER", payload });
+        }}
+      />
+      <TypesMenu
+        types={filters.types}
+        addType={(payload) => {
+          filtersDispatch({ type: "ADD_TYPE", payload });
+        }}
+        removeType={(payload) => {
+          filtersDispatch({ type: "REMOVE_TYPE", payload });
+        }}
+      />
       <Pokemons
         pokemons={pokemons.data}
         isFetching={pokemons.isFetching}
@@ -31,17 +50,8 @@ const Home: NextPage = () => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery(
-    ["pokemons", orderOptions[0].value, typesOptions],
-    () => fetchPokemons(0, orderOptions[0].value, typesOptions)
-  );
-
-  return {
-    props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
-    },
-  };
+  const initialPokemons = await fetchPokemons(0, initialFilters);
+  return { props: { initialPokemons } };
 };
 
 export default Home;

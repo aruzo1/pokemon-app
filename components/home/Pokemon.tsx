@@ -1,9 +1,9 @@
 import { theme } from "../../tailwind.config.js";
-import { IPokemon } from "../../lib/types";
+import { PokemonType } from "../../lib/types";
 import withPadding from "../../lib/helpers/withPadding";
 import PokemonImage from "./PokemonImage";
 
-const Pokemon = ({ pokemon }: { pokemon: IPokemon }) => (
+const Pokemon = ({ pokemon }: { pokemon: PokemonType }) => (
   <li className="flex flex-col gap-4 p-4 rounded-lg bg-gray-800 bor">
     <div className="p-4 rounded-lg bg-gray-700">
       <div className="aspect-square relative">

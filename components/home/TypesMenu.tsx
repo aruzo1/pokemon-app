@@ -1,5 +1,4 @@
 import { Disclosure } from "@headlessui/react";
-import { Dispatch, SetStateAction } from "react";
 import Checkbox from "../Checkbox";
 import ArrowDown from "../../public/icons/arrowDown.svg";
 
@@ -26,16 +25,10 @@ export const typesOptions = [
 
 const TypesMenu = (props: {
   types: string[];
-  setTypes: Dispatch<SetStateAction<string[]>>;
+  addType: (payload: string) => void;
+  removeType: (payload: string) => void;
 }) => {
-  const { types, setTypes } = props;
-
-  const addType = (type: string) => {
-    setTypes((prev) => [...prev, type]);
-  };
-  const removeType = (type: string) => {
-    setTypes((prev) => prev.filter((currentType) => currentType !== type));
-  };
+  const { types, addType, removeType } = props;
 
   return (
     <Disclosure

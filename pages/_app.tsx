@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import "../styles/globals.css";
 
 const queryClient = new QueryClient({
@@ -16,9 +16,7 @@ const queryClient = new QueryClient({
 function PokedexApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <Component {...pageProps} />
-      </Hydrate>
+      <Component {...pageProps} />
     </QueryClientProvider>
   );
 }
