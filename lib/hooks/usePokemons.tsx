@@ -1,11 +1,15 @@
 import { useInfiniteQuery } from "react-query";
-import { fetchPokemons } from "../graphql/queries";
-import { FiltersState, PokemonType } from "../types";
+import { fetchPokemons } from "../graphql/pokemons";
+import { FiltersState, OrderValue, PokemonType } from "../types";
 
-const usePokemons = (filters: FiltersState, initialData: PokemonType[]) => {
+const usePokemons = (
+  order: OrderValue,
+  filters: FiltersState,
+  initialData: PokemonType[]
+) => {
   return useInfiniteQuery<PokemonType[]>(
-    ["pokemons", filters],
-    ({ pageParam }) => fetchPokemons(pageParam, filters),
+    ["pokemons", order, filters],
+    ({ pageParam }) => fetchPokemons(pageParam, order, filters),
     {
       getNextPageParam(lastPage, pages) {
         if (!lastPage[0]) return undefined;

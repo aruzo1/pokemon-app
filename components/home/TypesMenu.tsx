@@ -31,10 +31,7 @@ const TypesMenu = (props: {
   const { types, addType, removeType } = props;
 
   return (
-    <Disclosure
-      as="div"
-      className="col-span-1 h-min p-4 bor rounded-lg bg-gray-800"
-    >
+    <Disclosure>
       <Disclosure.Button className="w-full flex justify-between items-center">
         <h3 className="font-bold text-xl">Types - {types.length}</h3>
         <ArrowDown />

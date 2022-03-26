@@ -1,7 +1,6 @@
-import { gql, GraphQLClient } from "graphql-request";
-import { FiltersState } from "../types";
-
-const client = new GraphQLClient("https://beta.pokeapi.co/graphql/v1beta");
+import { gql } from "graphql-request";
+import { FiltersState, OrderValue } from "../types";
+import client from "./client";
 
 const GET_POKEMONS = gql`
   query (
@@ -29,12 +28,13 @@ const GET_POKEMONS = gql`
 
 export const fetchPokemons = async (
   offset: number,
-  { order, types }: FiltersState
+  order: OrderValue,
+  { types }: FiltersState
 ) => {
   return client
     .request(GET_POKEMONS, {
       offset,
-      order: order.value,
+      order,
       types: types[0] && {
         pokemon_v2_pokemontypes: {
           pokemon_v2_type: { name: { _in: types } },
