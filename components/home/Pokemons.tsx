@@ -31,7 +31,7 @@ const Pokemons = (props: {
   }, [isError, isFetching, hasNextPage, fetchNextPage]);
 
   return (
-    <ul className="col-start-2 col-end-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <ul className="col-span-full lg:col-start-2 lg:col-end-6 order-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {pokemons?.pages.map((page) =>
         page.map((pokemon) => <Pokemon key={pokemon.id} pokemon={pokemon} />)
       )}
