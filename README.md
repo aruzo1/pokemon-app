@@ -4,7 +4,7 @@
 
 ### https://pokemon-app.aruzo.it
 
-![preview](./images/preview.png)
+![preview](./image/preview.png)
 
 ## Features
 - Infinity scroll 
